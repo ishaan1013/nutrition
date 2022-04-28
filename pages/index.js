@@ -1,7 +1,12 @@
 import Head from "next/head"
 import Image from "next/image"
+import { useAppContext } from '../context/state';
+
+import Calendar from "../components/calendar"
 
 export default function Home() {
+  const appContext = useAppContext();
+
   return (
     <div>
       <Head>
@@ -14,6 +19,12 @@ export default function Home() {
         <h1>
           Welcome to Next.js!
         </h1>
+        <p>
+          {appContext.day}
+        </p>
+
+
+        {/* <Calendar /> */}
       </main>
     </div>
   )
