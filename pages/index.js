@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Image from "next/image"
-import { useAppContext } from '../context/state';
+import { useAppContext } from '../global/state';
 
 import Calendar from "../components/calendar"
 

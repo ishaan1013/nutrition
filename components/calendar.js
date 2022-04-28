@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAppContext } from '../context/state';
+import { useAppContext } from '../global/state';
 
 
 export default function Calendar() {
