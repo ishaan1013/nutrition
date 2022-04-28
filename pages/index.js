@@ -1,11 +1,11 @@
 import Head from "next/head"
 import Image from "next/image"
-import { useAppContext } from '../global/state';
+import { useAppContext } from "../global/state"
 
 import Calendar from "../components/calendar"
 
 export default function Home() {
-  const appContext = useAppContext();
+  const appContext = useAppContext()
 
   return (
     <div>

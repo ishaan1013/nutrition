@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAppContext } from '../global/state';
+import { useAppContext } from "../global/state"
 
 
 export default function Calendar() {
@@ -16,10 +16,10 @@ export default function Calendar() {
     }
 
     // July
-    daysInMonth(7,2009); // 31
+    daysInMonth(7,2009) // 31
     // February
-    daysInMonth(2,2009); // 28
-    daysInMonth(2,2008); // 29
+    daysInMonth(2,2009) // 28
+    daysInMonth(2,2008) // 29
 
     return (
         null
