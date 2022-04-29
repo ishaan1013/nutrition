@@ -22,6 +22,10 @@ export default function Calendar() {
     daysInMonth(2,2008) // 29
 
     return (
-        null
+        <>
+            <section className="h-80 w-1/3 bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/30">
+
+            </section>
+        </>
     )
 }

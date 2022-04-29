@@ -16,15 +16,15 @@ export default function Home() {
       </Head>
 
       <main className="h-screen p-10">
-        <h1>
+        {/* <h1>
           Welcome to Next.js!
         </h1>
         <p>
           {appContext.day}
-        </p>
+        </p> */}
 
 
-        {/* <Calendar /> */}
+        <Calendar />
       </main>
     </div>
   )
