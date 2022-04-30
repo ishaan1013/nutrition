@@ -27,63 +27,58 @@ export default function Calendar() {
     daysInMonth(2,2008) // 29
 
     function CalendarMonths() {
+        const m=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let months = []
+
         if (monthView) {
-            return (
-                <>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Jan
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Feb
-                    </div>
-                    <div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Mar
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Apr
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        May
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Jun
-                    </div>
-                </>
-            )
+            months=[]
+            for (let i = 1; i <= 5; i++) {
+                if (i == month) {
+                    months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                }
+                else {
+                    months.push(<div className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                }
+            }
+            if (6 == month) {
+                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+            }
+            else {
+                months.push(<div className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+            }
         }
         else {
-            return (
-                <>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Jul
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Aug
-                    </div>
-                    <div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Sep
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Oct
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Nov
-                    </div>
-                    <div className="rounded-full bg-white/60 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">
-                        Dec
-                    </div>
-                </>
-            )
+            months = []
+            for (let i = 7; i <= 11; i++) {
+                if (i == month) {
+                    months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                }
+                else {
+                    months.push(<div className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                }
+            }
+            if (12 == month) {
+                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+            }
+            else {
+                months.push(<div className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+            }
         }
+        return months
     }
 
     function CalendarDays() {
         let days = []
         for (let i = 1; i <= firstDOW; i++) {
-            days.push(<div className=" hover:bg-white/25 text-sm cursor-pointer py-1 rounded-full"/>)
+            days.push(<div className="py-1"/>)
         }
         for (let i = 1; i <= daysInMonth(month, year); i++) {
-            days.push(<div className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/25 py-1 rounded-full">{i}</div>)
+            if (day != i) {
+                days.push(<div className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/25 py-1 rounded-full">{i}</div>)
+            }
+            else {
+                days.push(<div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">{i}</div>)
+            }
         }
         return days
     }
