@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+import Account from "../components/account"
 import Calendar from "../components/calendar"
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
         )
       } else {
         return(
-          null
+          <Account />
         )
       }
     });

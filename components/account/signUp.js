@@ -33,17 +33,18 @@ export default function SignUp() {
             }}
             onSubmit={async (values) => {
                 await new Promise((r) => setTimeout(r, 500))
-                createUserWithEmailAndPassword(auth, values.email, values.pw)
+                signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    // ...
+                        // Signed in 
+                        const user = userCredential.user;
+                        // ...
                     })
                     .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    // ..
-                    })
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log(errorCode)
+                        console.log(errorMessage)
+                    });
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -52,7 +53,7 @@ export default function SignUp() {
                 <Form>
                     <div>
                         <div>
-                            <label htmlFor="email">Your email address</label>
+                            <label htmlFor="email">Email</label>
                             <Field
                             id="email"
                             name="email"
@@ -65,7 +66,7 @@ export default function SignUp() {
                             }
                         </div>
                         <div>
-                            <label htmlFor="password">How can we help?</label>
+                            <label htmlFor="password">Password</label>
                             <Field
                             id="password"
                             name="password"
