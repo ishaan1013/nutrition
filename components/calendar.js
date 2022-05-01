@@ -9,22 +9,10 @@ export default function Calendar() {
     const [month, setMonth] = useState(appContext.month)
     const [year, setYear] = useState(appContext.year)
 
-    const [monthView, setMonthView] = useState(month < 7);
-    console.log(monthView)
+    const [monthPreview, setMonthPreview] = useState(appContext.month)
+    const [yearPreview, setYearPreview] = useState(appContext.year)
 
-    // ! whenever getting new MONTH add 1 for the correct value
-
-    const firstDOW = new Date(year + "-" + month + "-" + 1).getDay()
-
-    function daysInMonth (month, year) {
-        return new Date(year, month, 0).getDate()
-    }
-
-    // July
-    daysInMonth(7,2009) // 31
-    // February
-    daysInMonth(2,2009) // 28
-    daysInMonth(2,2008) // 29
+    const [monthView, setMonthView] = useState(month < 7)
 
     function CalendarMonths() {
         const m=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -33,38 +21,72 @@ export default function Calendar() {
         if (monthView) {
             months=[]
             for (let i = 1; i <= 5; i++) {
-                if (i == month) {
+                if (i == monthPreview) {
                     months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
                 }
                 else {
-                    months.push(<div className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                    months.push(
+                        <div 
+                        className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                        onClick={() => {setMonthPreview(i)}}
+                        >
+                            {m[i-1]}
+                        </div>
+                    )
                 }
             }
-            if (6 == month) {
+            if (6 == monthPreview) {
                 months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
             }
             else {
-                months.push(<div className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+                months.push(
+                    <div 
+                    className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                    onClick={() => {setMonthPreview(6)}}
+                    >
+                        {m[5]}
+                    </div>
+                )
             }
         }
         else {
             months = []
             for (let i = 7; i <= 11; i++) {
-                if (i == month) {
+                if (i == monthPreview) {
                     months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
                 }
                 else {
-                    months.push(<div className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                    months.push(
+                        <div 
+                        className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                        onClick={() => {setMonthPreview(i)}}
+                        >
+                            {m[i-1]}
+                        </div>
+                    )
                 }
             }
-            if (12 == month) {
-                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+            if (12 == monthPreview) {
+                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[11]}</div>)
             }
             else {
-                months.push(<div className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+                months.push(
+                    <div 
+                    className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                    onClick={() => {setMonthPreview(12)}}
+                    >
+                        {m[11]}
+                    </div>
+                )
             }
         }
         return months
+    }
+
+    const firstDOW = new Date(yearPreview + "-" + monthPreview + "-" + 1).getDay()
+
+    function daysInMonth (month, year) {
+        return new Date(year, month, 0).getDate()
     }
 
     function CalendarDays() {
@@ -72,12 +94,12 @@ export default function Calendar() {
         for (let i = 1; i <= firstDOW; i++) {
             days.push(<div className="py-1"/>)
         }
-        for (let i = 1; i <= daysInMonth(month, year); i++) {
-            if (day != i) {
-                days.push(<div className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/25 py-1 rounded-full">{i}</div>)
+        for (let i = 1; i <= daysInMonth(monthPreview, yearPreview); i++) {
+            if (day == i && monthPreview == month) {
+                days.push(<div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">{i}</div>)
             }
             else {
-                days.push(<div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">{i}</div>)
+                days.push(<div className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/25 py-1 rounded-full">{i}</div>)
             }
         }
         return days
@@ -86,6 +108,8 @@ export default function Calendar() {
     return (
         <>
             <section className="h-80 w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/30 px-10 py-7">
+
+                {/* month selector */}
                 <div className="flex justify-between items-center">
                     <FaChevronLeft 
                     className="text-white cursor-pointer"
@@ -100,9 +124,10 @@ export default function Calendar() {
                     />
                 </div>
 
-                <div className="px-2 pb-8 h-full">
-                    <div className="h-full flex flex-col justify-center">
-                        <div className="w-[52%] mt-6 mr-8 grid grid-cols-7 gap-x-1">
+                <div className="flex items-center h-full pb-8">
+                    {/* calendar */}
+                    <div className="h-full flex flex-col justify-center w-[55%] px-2">
+                        <div className="mt-6 mr-8 grid grid-cols-7 gap-x-1">
                             <div className="text-white font-bold select-none text-center py-1 rounded-full">S</div>
                             <div className="text-white font-bold select-none text-center py-1 rounded-full">M</div>
                             <div className="text-white font-bold select-none text-center py-1 rounded-full">T</div>
@@ -111,9 +136,18 @@ export default function Calendar() {
                             <div className="text-white font-bold select-none text-center py-1 rounded-full">F</div>
                             <div className="text-white font-bold select-none text-center py-1 rounded-full">S</div>
                         </div>
-                        <div className="w-[52%] mr-8 grid grid-cols-7 gap-x-1">
+                        <div className="mr-8 grid grid-cols-7 gap-x-1">
                             <CalendarDays/>
                         </div>
+                    </div>
+
+                    <div className="h-full w-[45%] px-2 pt-12 pb-6 flex flex-col justify-between items-center">
+                        <ul>
+                            <li>Calorie Goal</li>
+                            <li>Macros Goal</li>
+                            <li>Weight Recorded</li>
+                        </ul>
+                        <div>yee</div>
                     </div>
                 </div>
             </section>
