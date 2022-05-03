@@ -11,15 +11,15 @@ export function AppWrapper({ children }) {
     }
 
     const changeDay = (day) => {
-        sharedState.day = day;
+        sharedState.day = day
     }
 
     const changeMonth = (month) => {
-        sharedState.month = month;
+        sharedState.month = month
     }
 
     const changeYear = (year) => {
-        sharedState.year = year;
+        sharedState.year = year
     }
 
     return (

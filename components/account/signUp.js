@@ -1,7 +1,7 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import  { useRef } from "react"
-import { Formik, Field, Form  } from 'formik'
-import { RiErrorWarningLine } from 'react-icons/ri'
+import { app } from "../../global/firebase"
+import firebase from 'firebase/app'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import  { useState } from "react"
 
 const auth = getAuth()
 
@@ -24,66 +24,51 @@ function validatePw(value) {
 }
 
 export default function SignUp() {
-    const form = useRef()
+    const [error, setError] = useState("")
+
+    const signUpHandler = async () => {
+        createUserWithEmailAndPassword(auth, values.email, values.pw)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode)
+                console.log(errorMessage)
+                setError(errorMessage)
+                // ..
+            })
+    }
+
     return(
-        <Formik
-            initialValues={{
-                email: '',
-                pw: '',
-            }}
-            onSubmit={async (values) => {
-                await new Promise((r) => setTimeout(r, 500))
-                signInWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                        // Signed in 
-                        const user = userCredential.user;
-                        // ...
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log(errorCode)
-                        console.log(errorMessage)
-                    });
-            }}
-            validateOnChange={false}
-            validateOnBlur={false}
-            >
-            {({ errors, touched, isValidating }) => (
-                <Form>
-                    <div>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <Field
-                            id="email"
-                            name="email"
-                            placeholder="user@example.com"
-                            as="input"
-                            validate={validateEmail}
-                            />
-                            {errors.email && touched.email && 
-                            <div><RiErrorWarningLine/> {errors.email}</div>
-                            }
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <Field
-                            id="password"
-                            name="password"
-                            placeholder="Your Message"
-                            as="input"
-                            validate={validatePw}
-                            />
-                            {errors.msg && touched.msg && 
-                            <div><RiErrorWarningLine/> {errors.msg}</div>
-                            }
-                        </div>
-                        <button 
-                        type="submit"
-                        >Send</button>
-                    </div>
-                </Form>
-            )}
-        </Formik>
+        <>
+            <div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                    id="email"
+                    name="email"
+                    placeholder="user@example.com"
+                    as="input"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
+                    id="password"
+                    name="pw"
+                    placeholder=""
+                    as="input"
+                    />
+                </div>
+                <button
+                onClick={() => signUpHandler()}
+                >Send</button>
+            </div>
+            <p>{error}</p>
+        </>
     )
 }

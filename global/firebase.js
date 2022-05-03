@@ -1,20 +1,18 @@
 import { initializeApp } from "firebase/app"
-import { getDatabase } from "firebase/database";
-import { getAnalytics } from "firebase/analytics"
+import { getDatabase } from "firebase/database"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
+  apiKey: "AIzaSyAlHr5QMIVV6ZxCnehFyXVV81-whR8GiXk",
+  authDomain: "food-df653.firebaseapp.com",
+  databaseURL: "https://food-df653-default-rtdb.firebaseio.com",
+  projectId: "food-df653",
+  storageBucket: "food-df653.appspot.com",
+  messagingSenderId: "819480006764",
+  appId: "1:819480006764:web:d40ba985668144f0290849",
+  measurementId: "G-H4V4QW4NCQ"
 };
 
-const app = initializeApp(firebaseConfig)
-const database = getDatabase(app);
-const analytics = getAnalytics(app)
+export const app = initializeApp(firebaseConfig)
+const database = getDatabase(app)

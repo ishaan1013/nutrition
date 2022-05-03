@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Image from "next/image"
+import { useState } from 'react'
 import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -8,25 +9,19 @@ import Calendar from "../components/calendar"
 
 export default function Home() {
   const appContext = useAppContext()
+  const [userIn, setUserIn] = useState(false)
 
-  const auth = getAuth();
+  const auth = getAuth()
+  const user = auth.currentUser
 
-  function Page() {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        return (
-          <Dashboard />
-        )
-      } else {
-        return(
-          <Account />
-        )
-      }
-    });
-  }
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      setUserIn(true)
+    } else {
+      setUserIn(false)
+    }
+  })
 
   function Dashboard() {
     return (
@@ -46,13 +41,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Nutrition App</title>
+        <title>Food</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="h-screen p-10">
-        <Page />
+        {userIn ? <Dashboard /> : <Account />}
       </main>
     </div>
   )

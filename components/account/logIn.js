@@ -1,7 +1,7 @@
+import { app } from "../../global/firebase"
+import firebase from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword, signInAnonymously  } from "firebase/auth";
-import  { useRef } from "react"
-import { Formik, Field, Form  } from 'formik'
-import { RiErrorWarningLine } from 'react-icons/ri'
+import  { useState } from "react"
 
 const auth = getAuth()
 
@@ -26,11 +26,38 @@ function validatePw(value) {
 }
 
 export default function Login() {
+    const [error, setError] = useState("")
+    const [email, setEmail] = useState("")
+    const [pass, setPass] = useState("")
+
+    const onChangeEmail = (event) => {
+        setEmail(event.target.value)
+    }  
+
+    const onChangePass = (event) => {
+        setPass(event.target.value)
+    }  
+
+    const logInHandler = async () => {
+        await new Promise((r) => setTimeout(r, 500))
+        signInWithEmailAndPassword(auth, email, pass)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode)
+                console.log(errorMessage)
+                setError(errorMessage)
+            })
+    }
 
     function anon() {
         signInAnonymously(auth)
             .then(() => {
-                // Signed in..
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -39,72 +66,33 @@ export default function Login() {
             });
     }
 
-    const form = useRef()
     return(
         <>
             <div
             onClick={anon()}
             >sign in anonymously</div>
-            <Formik
-                initialValues={{
-                    email: '',
-                    pw: '',
-                }}
-                onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500))
-                    createUserWithEmailAndPassword(auth, values.email, values.pw)
-                        .then((userCredential) => {
-                        // Signed in
-                        const user = userCredential.user;
-                        // ...
-                        })
-                        .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        console.log(errorCode)
-                        console.log(errorMessage)
-                        // ..
-                        })
-                }}
-                validateOnChange={false}
-                validateOnBlur={false}
-                >
-                {({ errors, touched, isValidating }) => (
-                    <Form>
-                        <div>
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <Field
-                                id="email"
-                                name="email"
-                                placeholder="user@example.com"
-                                as="input"
-                                validate={validateEmail}
-                                />
-                                {errors.email && touched.email &&
-                                <div><RiErrorWarningLine/> {errors.email}</div>
-                                }
-                            </div>
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <Field
-                                id="password"
-                                name="password"
-                                placeholder="Your Message"
-                                as="input"
-                                validate={validatePw}
-                                />
-                                {errors.msg && touched.msg &&
-                                <div><RiErrorWarningLine/> {errors.msg}</div>
-                                }
-                            </div>
-                            <button
-                            type="submit"
-                            >Send</button>
-                        </div>
-                    </Form>
-                )}
-            </Formik>
+            <div>
+                <div>
+                    <input
+                    id="email"
+                    placeholder="user@example.com"
+                    value={email}
+                    onChange={onChangeEmail}
+                    />
+                </div>
+                <div>
+                    <input
+                    id="password"
+                    placeholder="password"
+                    value={pass}
+                    onChange={onChangePass}
+                    />
+                </div>
+                <button
+                onClick={() => logInHandler()}
+                >Send</button>
+            </div>
+            <p>{error}</p>
         </>
     )
 }
