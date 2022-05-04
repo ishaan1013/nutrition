@@ -110,7 +110,8 @@ export default function Calendar() {
                 days.push(
                     <div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">
                         <span
-                        className={currentDay ? "font-bold" : "fond-medium"}
+                        className={(i == current.getDate() && monthPreview == current.getMonth() + 1 && yearPreview == current.getFullYear())
+                             ? "font-bold" : "font-medium"}
                         >{i}</span>
                     </div>
                 )
@@ -122,7 +123,8 @@ export default function Calendar() {
                     onClick={() => {changeDay(i)}}
                     >
                         <span
-                        className={currentDay ? "font-extrabold" : "fond-medium"}
+                        className={(i == current.getDate() && monthPreview == current.getMonth() + 1 && yearPreview == current.getFullYear())
+                             ? "font-bold" : "font-medium"}
                         >{i}</span>
                     </div>
                 )
