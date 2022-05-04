@@ -82,6 +82,13 @@ export default function Calendar() {
 
     const firstDOW = new Date(yearPreview + "-" + monthPreview + "-" + 1).getDay()
 
+    const current = new Date()
+    const currentDay = (
+        day == current.getDate() &&
+        monthPreview == current.getMonth() + 1 &&
+        yearPreview == current.getFullYear()
+    )
+
     function daysInMonth (month, year) {
         return new Date(year, month, 0).getDate()
     }
@@ -100,7 +107,13 @@ export default function Calendar() {
         }
         for (let i = 1; i <= daysInMonth(monthPreview, yearPreview); i++) {
             if (appContext.sharedState.day == i && monthPreview == appContext.sharedState.month && yearPreview == appContext.sharedState.year) {
-                days.push(<div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">{i}</div>)
+                days.push(
+                    <div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">
+                        <span
+                        className={currentDay ? "font-bold" : "fond-medium"}
+                        >{i}</span>
+                    </div>
+                )
             }
             else {
                 days.push(
@@ -108,7 +121,9 @@ export default function Calendar() {
                     className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/40 py-1 rounded-full"
                     onClick={() => {changeDay(i)}}
                     >
-                        {i}
+                        <span
+                        className={currentDay ? "font-extrabold" : "fond-medium"}
+                        >{i}</span>
                     </div>
                 )
             }
@@ -116,7 +131,6 @@ export default function Calendar() {
         return days
     }
 
-    const current = new Date()
     const before = (
         parseInt(appContext.sharedState.year) < current.getFullYear() || 
         appContext.sharedState.year == current.getFullYear() && parseInt(appContext.sharedState.month) < current.getMonth() + 1 ||
@@ -185,15 +199,15 @@ export default function Calendar() {
                         <ul>
                             <li className="flex items-center text-white font-medium select-none">
                                 <Checkbox/>
-                                Calorie Goal
+                                thing 1
                             </li>
                             <li className="flex items-center text-white font-medium select-none">
                                 <Checkbox/>
-                                Macros Goal
+                                thing 2
                             </li>
                             <li className="flex items-center text-white font-medium select-none">
                                 <Checkbox/>
-                                Weight Recorded
+                                thing 3
                             </li>
                         </ul>
                     </div>
