@@ -1,34 +1,34 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from "react"
 
-const AppContext = createContext();
+const AppContext = createContext()
 
 export function AppWrapper({ children }) {
-    const current = new Date();
+    const current = new Date()
     const sharedState = {
         day: `${current.getDate()}`,
         month: `${current.getMonth() + 1}`,
         year: `${current.getFullYear()}`
     }
 
-    const changeDay = (day) => {
+    const changeDayContext = (day) => {
         sharedState.day = day
     }
 
-    const changeMonth = (month) => {
+    const changeMonthContext = (month) => {
         sharedState.month = month
     }
 
-    const changeYear = (year) => {
+    const changeYearContext = (year) => {
         sharedState.year = year
     }
 
     return (
-        <AppContext.Provider value={sharedState}>
+        <AppContext.Provider value={{ sharedState, changeDayContext, changeMonthContext, changeYearContext }}>
             {children}
         </AppContext.Provider>
-    );
+    )
 }
 
 export function useAppContext() {
-    return useContext(AppContext);
+    return useContext(AppContext)
 }

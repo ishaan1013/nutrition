@@ -1,8 +1,8 @@
 import Head from "next/head"
 import Image from "next/image"
-import { useState } from 'react'
+import { useState } from "react"
 import { useAppContext } from "../global/state"
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 import Account from "../components/account"
 import Calendar from "../components/calendar"
@@ -16,7 +16,7 @@ export default function Home() {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const uid = user.uid;
+      const uid = user.uid
       setUserIn(true)
     } else {
       setUserIn(false)

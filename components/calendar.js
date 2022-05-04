@@ -6,14 +6,10 @@ import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminat
 
 export default function Calendar() {
     const appContext = useAppContext()
-    const [day, setDay] = useState(appContext.day)
-    const [month, setMonth] = useState(appContext.month)
-    const [year, setYear] = useState(appContext.year)
-
-    const [monthPreview, setMonthPreview] = useState(appContext.month)
-    const [yearPreview, setYearPreview] = useState(appContext.year)
-
-    const [monthView, setMonthView] = useState(month < 7)
+    const [day, setDay] = useState(appContext.sharedState.day)
+    const [monthView, setMonthView] = useState(appContext.sharedState.month < 7)
+    const [monthPreview, setMonthPreview] = useState(appContext.sharedState.month)
+    const [yearPreview, setYearPreview] = useState(appContext.sharedState.year)
 
     function CalendarMonths() {
         const m=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -93,8 +89,9 @@ export default function Calendar() {
     function CalendarDays() {
         function changeDay(x) {
             setDay(x)
-            setMonth(monthPreview)
-            setYear(yearPreview)
+            appContext.changeMonthContext(monthPreview)
+            appContext.changeYearContext(yearPreview)
+            appContext.changeDayContext(x)
         }
 
         let days = []
@@ -102,7 +99,7 @@ export default function Calendar() {
             days.push(<div className="py-1"/>)
         }
         for (let i = 1; i <= daysInMonth(monthPreview, yearPreview); i++) {
-            if (day == i && monthPreview == month && yearPreview == year) {
+            if (appContext.sharedState.day == i && monthPreview == appContext.sharedState.month && yearPreview == appContext.sharedState.year) {
                 days.push(<div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">{i}</div>)
             }
             else {
@@ -121,9 +118,9 @@ export default function Calendar() {
 
     const current = new Date()
     const before = (
-        parseInt(year) < current.getFullYear() || 
-        year == current.getFullYear() && parseInt(month) < current.getMonth() + 1 ||
-        year == current.getFullYear() && month == current.getMonth() + 1 && day < current.getDate()
+        parseInt(appContext.sharedState.year) < current.getFullYear() || 
+        appContext.sharedState.year == current.getFullYear() && parseInt(appContext.sharedState.month) < current.getMonth() + 1 ||
+        appContext.sharedState.year == current.getFullYear() && appContext.sharedState.month == current.getMonth() + 1 && appContext.sharedState.day < current.getDate()
     )
     function Checkbox() { 
         if (before) {
@@ -136,6 +133,7 @@ export default function Calendar() {
 
     return (
         <>
+            <p>{appContext.sharedState.day}-{appContext.sharedState.month}-{appContext.sharedState.year}</p>
             <section className="h-80 w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/40 px-10 py-7">
 
                 {/* month selector */}

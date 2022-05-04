@@ -1,6 +1,6 @@
 import { app } from "../../global/firebase"
-import firebase from 'firebase/app'
-import { getAuth, signInWithEmailAndPassword, signInAnonymously  } from "firebase/auth";
+import firebase from "firebase/app"
+import { getAuth, signInWithEmailAndPassword, signInAnonymously  } from "firebase/auth"
 import  { useState } from "react"
 
 const auth = getAuth()
@@ -8,9 +8,9 @@ const auth = getAuth()
 function validateEmail(value) {
     let error
     if (!value) {
-        error = 'Your email is required.'
+        error = "Your email is required."
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        error = 'Invalid email address.'
+        error = "Invalid email address."
     }
     // use state for this and check if account does not exist with firebase error code
     return error
@@ -19,7 +19,7 @@ function validateEmail(value) {
 function validatePw(value) {
     let error
     if (value.length < 8) {
-        error = 'Password should be at least 8 characters long.'
+        error = "Password should be at least 8 characters long."
         // use state for error message and use the error code from firebase to check
     }
     return error
@@ -43,12 +43,12 @@ export default function Login() {
         signInWithEmailAndPassword(auth, email, pass)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
+                const user = userCredential.user
                 console.log(user)
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorCode = error.code
+                const errorMessage = error.message
                 console.log(errorCode)
                 console.log(errorMessage)
                 setError(errorMessage)
@@ -60,10 +60,10 @@ export default function Login() {
             .then(() => {
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorCode = error.code
+                const errorMessage = error.message
                 // ...
-            });
+            })
     }
 
     return(

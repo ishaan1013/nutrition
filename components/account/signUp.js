@@ -1,5 +1,5 @@
 import { app } from "../../global/firebase"
-import firebase from 'firebase/app'
+import firebase from "firebase/app"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import  { useState } from "react"
 
@@ -8,9 +8,9 @@ const auth = getAuth()
 function validateEmail(value) {
     let error
     if (!value) {
-        error = 'Your email is required.'
+        error = "Your email is required."
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        error = 'Invalid email address.'
+        error = "Invalid email address."
     }
     return error
 }
@@ -18,7 +18,7 @@ function validateEmail(value) {
 function validatePw(value) {
     let error
     if (value.length < 8) {
-        error = 'Password should be at least 8 characters long.'
+        error = "Password should be at least 8 characters long."
     }
     return error
 }
@@ -30,12 +30,12 @@ export default function SignUp() {
         createUserWithEmailAndPassword(auth, values.email, values.pw)
             .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
+                const user = userCredential.user
                 console.log(user)
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorCode = error.code
+                const errorMessage = error.message
                 console.log(errorCode)
                 console.log(errorMessage)
                 setError(errorMessage)

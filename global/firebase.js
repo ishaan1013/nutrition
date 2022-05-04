@@ -12,7 +12,7 @@ const firebaseConfig = {
   messagingSenderId: "819480006764",
   appId: "1:819480006764:web:d40ba985668144f0290849",
   measurementId: "G-H4V4QW4NCQ"
-};
+}
 
 export const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
