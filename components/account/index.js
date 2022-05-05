@@ -4,7 +4,7 @@ import LogIn from "./logIn"
 import SignUp from "./signUp"
 
 export default function Account() {
-    const [isLogIn, setIsLogIn] = useState(false)
+    const [isLogIn, setIsLogIn] = useState(true)
 
     return (
         <>

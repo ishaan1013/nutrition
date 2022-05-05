@@ -69,7 +69,7 @@ export default function Login() {
     return(
         <>
             <div
-            onClick={anon()}
+            onClick={() => anon()}
             >sign in anonymously</div>
             <div>
                 <div>
