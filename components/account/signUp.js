@@ -25,9 +25,19 @@ function validatePw(value) {
 
 export default function SignUp() {
     const [error, setError] = useState("")
+    const [email, setEmail] = useState("")
+    const [pass, setPass] = useState("")
+
+    const onChangeEmail = (event) => {
+        setEmail(event.target.value)
+    }  
+
+    const onChangePass = (event) => {
+        setPass(event.target.value)
+    }  
 
     const signUpHandler = async () => {
-        createUserWithEmailAndPassword(auth, values.email, values.pw)
+        createUserWithEmailAndPassword(auth, email, pass)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user
@@ -47,21 +57,21 @@ export default function SignUp() {
         <>
             <div>
                 <div>
-                    <label htmlFor="email">Email</label>
                     <input
                     id="email"
-                    name="email"
                     placeholder="user@example.com"
                     as="input"
+                    value={email}
+                    onChange={onChangeEmail}
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
                     <input
                     id="password"
-                    name="pw"
-                    placeholder=""
+                    placeholder="pw"
                     as="input"
+                    value={pass}
+                    onChange={onChangePass}
                     />
                 </div>
                 <button

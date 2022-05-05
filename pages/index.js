@@ -1,8 +1,7 @@
 import Head from "next/head"
-import Image from "next/image"
 import { useState } from "react"
 import { useAppContext } from "../global/state"
-import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
 import Account from "../components/account"
 import Calendar from "../components/calendar"
@@ -12,12 +11,20 @@ export default function Home() {
   const [userIn, setUserIn] = useState(false)
 
   const auth = getAuth()
-  const user = auth.currentUser
+
+  function signOutFunc() {
+    signOut(auth).then(() => {
+      console.log("signed out")
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid
       setUserIn(true)
+      console.log(user)
     } else {
       setUserIn(false)
     }
@@ -26,14 +33,12 @@ export default function Home() {
   function Dashboard() {
     return (
       <>
-        {/* <h1>
-          Welcome to Next.js!
-        </h1>
-        <p>
-          {appContext.day}
-        </p> */}
-
         <Calendar />
+        <div
+        onClick={() => signOutFunc()}
+        >
+          sign out
+        </div>
       </>
     )
   }

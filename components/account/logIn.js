@@ -39,7 +39,6 @@ export default function Login() {
     }  
 
     const logInHandler = async () => {
-        await new Promise((r) => setTimeout(r, 500))
         signInWithEmailAndPassword(auth, email, pass)
             .then((userCredential) => {
                 // Signed in 
@@ -58,6 +57,7 @@ export default function Login() {
     function anon() {
         signInAnonymously(auth)
             .then(() => {
+                console.log("signed in anonymously")
             })
             .catch((error) => {
                 const errorCode = error.code
