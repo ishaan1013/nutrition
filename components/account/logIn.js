@@ -72,23 +72,22 @@ export default function Login() {
             onClick={() => anon()}
             >sign in anonymously</div>
             <div>
-                <div>
-                    <input
-                    id="email"
-                    placeholder="user@example.com"
-                    value={email}
-                    onChange={onChangeEmail}
-                    />
-                </div>
-                <div>
-                    <input
-                    id="password"
-                    placeholder="password"
-                    value={pass}
-                    onChange={onChangePass}
-                    />
-                </div>
+                <input
+                id="email"
+                placeholder="user@example.com"
+                value={email}
+                onChange={onChangeEmail}
+                className="w-full rounded-lg p-2 mt-5 mb-2 focus:outline-none focus:border-slate-300 border-slate-200 border-2"
+                />
+                <input
+                id="password"
+                placeholder="password"
+                value={pass}
+                onChange={onChangePass}
+                className="w-full rounded-lg p-2 mt-2 mb-5 focus:outline-none focus:border-slate-300 border-slate-200 border-2"
+                />
                 <button
+                className="w-full text-center rounded-lg bg-slate-500 text-white p-2 mt-5 mb-2"
                 onClick={() => logInHandler()}
                 >Send</button>
             </div>

@@ -70,7 +70,7 @@ export default function Weight() {
                 <div className="flex justify-between">
                     <div>
                         <h1 className="text-slate-600 text-5xl mb-2 font-black">50%</h1>
-                        <p className="text-slate-400 font-medium">text text progress</p>
+                        <p className="text-slate-500/90 font-medium">text text progress</p>
                     </div>
                     <FaChevronRight
                     className="text-slate-600 cursor-pointer hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"
