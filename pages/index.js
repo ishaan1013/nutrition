@@ -4,6 +4,7 @@ import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
 import Account from "../components/account"
+import Weight from "../components/weight"
 import Calendar from "../components/calendar"
 
 export default function Home() {
@@ -33,7 +34,10 @@ export default function Home() {
   function Dashboard() {
     return (
       <>
-        <Calendar />
+        <div className="flex">
+          <Calendar />
+          <Weight />
+        </div>
         <div
         onClick={() => signOutFunc()}
         >
