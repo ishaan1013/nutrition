@@ -83,11 +83,6 @@ export default function Calendar() {
     const firstDOW = new Date(yearPreview + "-" + monthPreview + "-" + 1).getDay()
 
     const current = new Date()
-    const currentDay = (
-        day == current.getDate() &&
-        monthPreview == current.getMonth() + 1 &&
-        yearPreview == current.getFullYear()
-    )
 
     function daysInMonth (month, year) {
         return new Date(year, month, 0).getDate()
@@ -111,7 +106,7 @@ export default function Calendar() {
                     <div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">
                         <span
                         className={(i == current.getDate() && monthPreview == current.getMonth() + 1 && yearPreview == current.getFullYear())
-                             ? "font-bold" : "font-medium"}
+                             ? "font-extrabold" : "font-medium"}
                         >{i}</span>
                     </div>
                 )
@@ -124,7 +119,7 @@ export default function Calendar() {
                     >
                         <span
                         className={(i == current.getDate() && monthPreview == current.getMonth() + 1 && yearPreview == current.getFullYear())
-                             ? "font-bold" : "font-medium"}
+                             ? "font-extrabold" : "font-medium"}
                         >{i}</span>
                     </div>
                 )

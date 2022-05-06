@@ -7,7 +7,12 @@ export function AppWrapper({ children }) {
     const sharedState = {
         day: `${current.getDate()}`,
         month: `${current.getMonth() + 1}`,
-        year: `${current.getFullYear()}`
+        year: `${current.getFullYear()}`,
+        globalUserIn: false
+    }
+
+    const setGlobalUserIn = (status) => {
+        sharedState.globalUserIn = status
     }
 
     const changeDayContext = (day) => {
@@ -23,7 +28,13 @@ export function AppWrapper({ children }) {
     }
 
     return (
-        <AppContext.Provider value={{ sharedState, changeDayContext, changeMonthContext, changeYearContext }}>
+        <AppContext.Provider value={{ 
+            sharedState, 
+            changeDayContext, 
+            changeMonthContext, 
+            changeYearContext, 
+            setGlobalUserIn 
+        }}>
             {children}
         </AppContext.Provider>
     )

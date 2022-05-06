@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image"
 import { useState } from "react"
 
 import LogIn from "./logIn"
@@ -11,7 +11,7 @@ export default function Account() {
     return (
         <>
             <section className="h-full w-full flex items-center justify-center">
-                <div className="w-[30rem] bg-white/30 rounded-3xl shadow-xl shadow-gray-200/50 p-10 ml-5 relative overflow-hidden backdrop-blur-lg flex items-center justify-center flex-col">
+                <div className="w-[30rem] bg-white/50 rounded-3xl shadow-2xl shadow-indigo-200/70 p-10 ml-5 relative overflow-hidden backdrop-blur-md flex items-center justify-center flex-col">
                     <Image 
                     src={Logo}
                     width={50}
