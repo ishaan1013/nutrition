@@ -60,13 +60,13 @@ export default function SignUp() {
             className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 cursor-pointer"
             >Temporary Sign In</div>
 
-            <div className="w-full flex justify-center items-center mb-5 mt-8">
+            <div className="w-full flex justify-center items-center mb-3 mt-5">
                 <div className="w-full h-[0.125rem] bg-slate-600"/>
                 <p className="px-5 pb-1 text-slate-600 font-semibold">or</p>
                 <div className="w-full h-[0.125rem] bg-slate-600"/>
             </div>
 
-            <h1 className="mt-4 text-2xl text-slate-600">Sign Up</h1>
+            <h1 className="mt-4 text-xl text-slate-600">Sign Up</h1>
             <div>
                 <input
                 id="email"
