@@ -17,7 +17,7 @@ export default function Account() {
                     width={50}
                     height={50}
                     />
-                    <h1 className="mt-3 mb-10 text-[1.7rem] text-blue-500/90 font-black">Nutrition + Weight Tracker</h1>
+                    <h1 className="mt-3 mb-10 text-[1.7rem] text-slate-600 font-black">Nutrition + Weight Tracker</h1>
 
                     {isLogIn ? <LogIn /> : <SignUp />}
                     {isLogIn ?
