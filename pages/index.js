@@ -18,7 +18,7 @@ export default function Home() {
       console.log("signed out")
     }).catch((error) => {
       console.log(error)
-    });
+    })
   }
 
   onAuthStateChanged(auth, (user) => {

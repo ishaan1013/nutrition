@@ -26,7 +26,7 @@ export default function Weight() {
         Tooltip,
         Legend,
         Filler
-    );
+    )
 
     const options = {
         responsive: true,
@@ -52,14 +52,14 @@ export default function Weight() {
         labels: labels,
         datasets: [{
             data: [150, 145, 148, 140, 155],
-            borderColor: '#748BA7',
+            borderColor: "#748BA7",
             tension: 0.3,
             borderWidth: 4,
-            pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+            pointBackgroundColor: "rgba(0, 0, 0, 0)",
             pointRadius: 0,
             fill: {
-                target: 'origin',
-                above: '#E4EAF2',
+                target: "origin",
+                above: "#E4EAF2",
             }
         }]
     }

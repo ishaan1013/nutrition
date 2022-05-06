@@ -70,24 +70,33 @@ export default function Login() {
         <>
             <div
             onClick={() => anon()}
-            >sign in anonymously</div>
+            className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 cursor-pointer"
+            >Temporary Sign In</div>
+
+            <div className="w-full flex justify-center items-center mb-5 mt-8">
+                <div className="w-full h-[0.125rem] bg-slate-600"/>
+                <p className="px-5 pb-1 text-slate-600 font-semibold">or</p>
+                <div className="w-full h-[0.125rem] bg-slate-600"/>
+            </div>
+
+            <h1 className="mt-4 text-2xl text-slate-600">Log In</h1>
             <div>
                 <input
                 id="email"
                 placeholder="user@example.com"
                 value={email}
                 onChange={onChangeEmail}
-                className="w-full rounded-lg p-2 mt-5 mb-2 focus:outline-none focus:border-slate-300 border-slate-200 border-2"
+                className="w-full rounded-lg p-2 mt-5 mb-2 focus:outline-none focus:border-blue-400 border-blue-200 border-2"
                 />
                 <input
                 id="password"
                 placeholder="password"
                 value={pass}
                 onChange={onChangePass}
-                className="w-full rounded-lg p-2 mt-2 mb-5 focus:outline-none focus:border-slate-300 border-slate-200 border-2"
+                className="w-full rounded-lg p-2 mt-2 mb-5 focus:outline-none focus:border-blue-400 border-blue-200 border-2"
                 />
                 <button
-                className="w-full text-center rounded-lg bg-slate-500 text-white p-2 mt-5 mb-2"
+                className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100"
                 onClick={() => logInHandler()}
                 >Send</button>
             </div>
