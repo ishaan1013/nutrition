@@ -15,7 +15,7 @@ import {
   } from "chart.js"
   import { Line } from "react-chartjs-2"
 
-export default function Weight() {
+export default function Consumed() {
     
     ChartJS.register(
         CategoryScale,

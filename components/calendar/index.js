@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAppContext } from "../global/state"
+import { useAppContext } from "../../global/state"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminateCheckBox } from "react-icons/md"
 
@@ -144,7 +144,6 @@ export default function Calendar() {
 
     return (
         <>
-            <p>{appContext.sharedState.day}-{appContext.sharedState.month}-{appContext.sharedState.year}</p>
             <section className="h-80 w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/40 px-10 py-7">
 
                 {/* month selector */}
