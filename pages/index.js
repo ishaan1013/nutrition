@@ -12,14 +12,6 @@ export default function Home() {
 
   const auth = getAuth()
 
-  function signOutFunc() {
-    signOut(auth).then(() => {
-      console.log("signed out")
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
-
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid
