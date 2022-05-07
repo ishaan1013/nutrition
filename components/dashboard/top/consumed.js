@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAppContext } from "../global/state"
+import { useAppContext } from "../../../global/state"
 import { FaChevronRight } from "react-icons/fa"
 
 import {
@@ -15,7 +15,7 @@ import {
   } from "chart.js"
   import { Line } from "react-chartjs-2"
 
-export default function Weight() {
+export default function Consumed() {
     
     ChartJS.register(
         CategoryScale,
@@ -66,11 +66,11 @@ export default function Weight() {
 
     return (
         <>
-            <section className="h-80 w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/50 px-10 py-7 ml-5 relative overflow-hidden">
+            <section className="h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/50 px-10 py-7 ml-5 relative overflow-hidden">
                 <div className="flex justify-between">
                     <div>
                         <h1 className="text-slate-600 text-5xl mb-2 font-black">50%</h1>
-                        <p className="text-slate-500/90 font-medium">text text progress</p>
+                        <p className="text-slate-500/90 font-medium">consumed</p>
                     </div>
                     <FaChevronRight
                     className="text-slate-600 cursor-pointer hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"

@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
+import Sidebar from "../components/dashboard/top/sidebar"
 import Dashboard from "../components/dashboard"
 import Account from "../components/account"
 
@@ -25,13 +26,15 @@ export default function Home() {
   })
 
   return (
-    <div>
+    <>
       <Head>
         <title>Food</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Bg Waves */}
+      {/* todo component, pass state as prop */}
       {userIn ? null :
       <>
         <div className="custom-shape-divider-bottom-1">
@@ -61,9 +64,8 @@ export default function Home() {
         </div>
       </>
       }
-      <main className="h-screen p-10">
-        {userIn ? <Dashboard /> : <Account />}
-      </main>
-    </div>
+
+      {userIn ? <Dashboard /> : <Account />}
+    </>
   )
 }

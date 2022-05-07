@@ -144,7 +144,7 @@ export default function Calendar() {
 
     return (
         <>
-            <section className="h-80 w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/40 px-10 py-7">
+            <section className="h-[19rem] w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/40 px-10 py-7">
 
                 {/* month selector */}
                 <div className="flex justify-between items-center">
@@ -178,7 +178,7 @@ export default function Calendar() {
                         </div>
                     </div>
 
-                    <div className="h-full w-[45%] px-2 pt-6 pb-[4.5rem] flex flex-col justify-between items-center">
+                    <div className="h-full w-[45%] px-2 pt-6 pb-16 flex flex-col justify-between items-center">
                         <div className="w-2/3 flex justify-between items-center bg-white/[15%] rounded-full px-2 py-1">
                             <FaChevronLeft 
                             className="text-white cursor-pointer"

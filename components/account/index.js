@@ -9,7 +9,7 @@ export default function Account() {
     const [isLogIn, setIsLogIn] = useState(true)
 
     return (
-        <>
+        <main className="h-screen p-10">
             <section className="h-full w-full flex items-center justify-center">
                 <div className="w-[30rem] bg-white/50 rounded-3xl shadow-2xl shadow-indigo-200/70 p-10 ml-5 relative overflow-hidden backdrop-blur-md flex items-center justify-center flex-col">
                     <Image 
@@ -35,6 +35,6 @@ export default function Account() {
                     }
                 </div>
             </section>
-        </>
+        </main>
     )
 }
