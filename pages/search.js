@@ -9,6 +9,17 @@ export default function Search() {
     const onChangeSearch = (event) => {
         setSearch(event.target.value)
     }  
+    const handlePress = (e) => {
+        if (e.key === "Enter") {
+            fetchSearch()
+        }
+    }
+    const handleSearch = (newVal) => {
+        setSearchResults(newVal)
+    }
+    const handleNutrition = (newVal) => {
+        setNutritionResults(newVal)
+    }
 
     const fetchSearch = async () => {
         const response = await fetch(
@@ -33,61 +44,51 @@ export default function Search() {
     }
 
     const fetchNutrition = async (foodName) => {
-        console.log(foodName)
-        // const headers = {
-        //     "x-app-id": "eaff6795",
-        //     "x-app-key": "4c3f736fe3e4cdb9af5b84bde1bd0089",
-        //     'x-remote-user-id': "0",
-        //     'content': 'application/json',
-        //     'Content-Type': 'application/x-www-form-urlencoded'
-        // }
-        // const response = await fetch(
-        //     `https://trackapi.nutritionix.com/v2/natural/nutrients`,
-        //     {
-        //         method: "post",
-        //         headers,
-        //         body: {"query": foodName},
-        //     }
-        // )
-        
-        var myHeaders = new Headers();
-        myHeaders.append("accept", "application/json");
-        myHeaders.append("x-app-id", "eaff6795");
-        myHeaders.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089");
-        myHeaders.append("x-remote-user-id", "1");
-        myHeaders.append("Content-Type", "application/json");
-        
-        var raw = JSON.stringify({ "query": "bread" })
+        var h = new Headers();
+        h.append("accept", "application/json");
+        h.append("x-app-id", "eaff6795");
+        h.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089");
+        h.append("x-remote-user-id", "1");
+        h.append("Content-Type", "application/json");
 
         var requestOptions = {
             method: 'POST',
-            headers: myHeaders,
-            body: raw,
+            headers: h,
+            body: JSON.stringify({ "query": foodName }),
             redirect: 'follow'
         }
 
-        const response = await fetch("https://trackapi.nutritionix.com/v2/natural/nutrients", requestOptions)
+        await fetch("https://trackapi.nutritionix.com/v2/natural/nutrients", requestOptions)
             .then(response => response.text())
             .then(result => setNutritionResults(result))
             .catch(error => console.log('error', error))
 
+        console.log(JSON.parse(nutritionResults))
+        console.log(JSON.parse(nutritionResults).foods[0].nf_calories)
     }
 
 
     return (
         <>
-            <div className="flex w-full justify-center items-center">
-                <input
-                id="search"
-                placeholder="search"
-                value={search}
-                onChange={onChangeSearch}
-                className="w-1/3 rounded-lg p-2 focus:outline-none focus:border-slate-400 border-slate-300 border-2 text-slate-600"
-                />
-                <MdSearch 
-                className="w-10 h-10 p-2 rounded-full cursor-pointer hover:bg-black/[0.05]"
-                onClick={() => {fetchSearch()}}
-                />
+            <div className="flex flex-col w-full justify-center items-center">
+                <div className="flex relative items-center w-1/3">
+                    <input
+                    id="search"
+                    placeholder="Search for foods..."
+                    value={search}
+                    onChange={onChangeSearch}
+                    onKeyPress={handlePress}
+                    className="w-full rounded-lg p-2 focus:outline-none focus:border-slate-400 border-slate-300 border-2 text-slate-600"
+                    />
+                    <MdSearch
+                    className="w-8 h-8 p-1 rounded-full cursor-pointer text-slate-600 hover:bg-slate-100/60 absolute right-2"
+                    onClick={() => {fetchSearch()}}
+                    />
+                </div>
+                <div className="flex items-center mt-2 select-none">
+                    <p className="font-medium text-xs text-slate-700">also search with &nbsp;</p>
+                    <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-700 px-1 py-[0.12rem] rounded-md">enter</div>
+                </div>
             </div>
             <p>{JSON.stringify(searchResults)}</p>
             <p>{nutritionResults}</p>
