@@ -1,8 +1,10 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {MdSearch} from "react-icons/md"
 
 export default function Search() {
     const [search, setSearch] = useState("")
+    const [inputError, setInputError] = useState(false)
+    const [searchError, setSearchError] = useState(false)
     const [searchResults, setSearchResults] = useState([])
     const [nutritionResults, setNutritionResults] = useState()
 
@@ -14,21 +16,17 @@ export default function Search() {
             foodSearch()
         }
     }
-    const handleSearch = (newVal) => {
-        setSearchResults(newVal)
-    }
-    const handleNutrition = (newVal) => {
-        setNutritionResults(newVal)
-    }
 
     const foodSearch = () => {
         console.log("searching...")
         console.log("search: " + search)
         if (search !== "") {
             fetchSearch()
+        } else {
+            setInputError(true)
+            setSearchResults([])
+            setNutritionResults("")
         }
-        setSearchResults([])
-        setNutritionResults("")
     }
 
     const fetchSearch = async () => {
@@ -49,10 +47,25 @@ export default function Search() {
                 dataList.push(data[key])
             }
         }
-        setSearchResults([dataList[0], dataList[1].food_name, dataList[2].food_name, dataList[3].food_name])
-        console.log(searchResults[0])
-        fetchNutrition(dataList[0].food_name)
+        if (dataList[0] !== undefined) {
+            setSearchResults([dataList[0], dataList[1], dataList[2], dataList[3]])
+            fetchNutrition(dataList[0].food_name)
+        } else {
+            setSearchError(true)
+        }
     }
+
+    useEffect (() => {
+        setTimeout(() => {
+            setSearchError(false)
+        }, 5000)
+    }, [searchError])
+
+    useEffect (() => {
+        setTimeout(() => {
+            setInputError(false)
+        }, 3000)
+    }, [inputError])
 
     const fetchNutrition = async (foodName) => {
         var h = new Headers();
@@ -96,6 +109,18 @@ export default function Search() {
                     onClick={() => {foodSearch()}}
                     />
                 </div>
+
+                {searchError &&
+                <div className="absolute mt-[-0.8rem] pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
+                    <p className="text-white font-medium">No results found.</p>
+                </div>
+                }
+                {inputError &&
+                <div className="absolute mt-[-0.8rem] pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
+                    <p className="text-white font-medium">Type something to search!</p>
+                </div>
+                }
+
                 <div className="flex items-center mt-2 mb-8 select-none">
                     <p className="font-medium text-xs text-slate-700">also search with &nbsp;</p>
                     <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-700 px-1 py-[0.12rem] rounded-md">enter</div>
