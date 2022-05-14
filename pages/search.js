@@ -91,7 +91,24 @@ export default function Search() {
         // console.log(JSON.parse(nutritionResults))
     }
 
-    console.log(searchResults)
+    function RenderSearchResults() {
+        if (searchResults.length > 0) {
+            console.log("search results: " + JSON.stringify(searchResults[0]))
+            const results = searchResults.map((result) => 
+                <div className="flex justify-between w-4/5 bg-transparent border-2 border-slate-300 rounded-lg p-4">
+                    <div className="flex flex-col">
+                        <h1>{result.food_name}</h1>
+                        <h4>{result.serving_qty} {result.serving_unit}</h4>
+                    </div>
+                </div>
+            )
+
+            return (<div>{results}</div>)
+        }
+        return null
+    }
+
+    // console.log(searchResults)
     return (
         <div className="w-screen h-screen flex items-center justify-center">
             <div className="w-1/3 py-12 bg-white rounded-[3rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
@@ -102,37 +119,33 @@ export default function Search() {
                     value={search}
                     onChange={onChangeSearch}
                     onKeyPress={handlePress}
-                    className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 text-slate-600"
+                    className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 text-slate-600 font-medium"
                     />
                     <MdSearch
-                    className="w-8 h-8 p-1 rounded-full cursor-pointer text-slate-600 hover:bg-slate-100/60 absolute right-2"
+                    className="w-8 h-8 p-1 rounded-full cursor-pointer text-slate-600 hover:bg-slate-100/80 absolute right-2"
                     onClick={() => {foodSearch()}}
                     />
                 </div>
 
                 {searchError &&
-                <div className="absolute mt-[-0.8rem] pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
+                <div className="absolute mt-2 pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
                     <p className="text-white font-medium">No results found.</p>
                 </div>
                 }
                 {inputError &&
-                <div className="absolute mt-[-0.8rem] pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
+                <div className="absolute mt-2 pt-1 pb-[0.4rem] px-5 bg-red-600/60 backdrop-blur-[3px] rounded-lg select-none">
                     <p className="text-white font-medium">Type something to search!</p>
                 </div>
                 }
 
                 <div className="flex items-center mt-2 mb-8 select-none">
-                    <p className="font-medium text-xs text-slate-700">also search with &nbsp;</p>
-                    <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-700 px-1 py-[0.12rem] rounded-md">enter</div>
+                    <p className="font-medium text-xs text-slate-400">also search with &nbsp;</p>
+                    <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-500 px-1 py-[0.12rem] rounded-md">enter</div>
                 </div>
 
-                {/* <p>{searchResults[0]}</p> */}
-                <div className="flex justify-between w-4/5 bg-transparent border-2 border-slate-300 rounded-lg p-4">
-                    <div className="flex flex-col">
-                        <h1>{searchResults.length !== 0 ? searchResults[0].food_name : ""}</h1>
-                        <h4>{searchResults.length !== 0 ? searchResults[0].serving_qty + " " + searchResults[0].serving_unit : ""}</h4>
-                    </div>
-                </div>
+                <RenderSearchResults />
+
+
                 {/* <p>{JSON.stringify(nutritionResults)}</p> */}
                 {/* <p>{nutritionResults.foods[0].nf_calories} calories</p>
                 <p>{nutritionResults.foods[0].serving_qty} {nutritionResults.foods[0].serving_unit}</p>
