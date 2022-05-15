@@ -1,7 +1,7 @@
 import Weight from "./top/weight"
 import Consumed from "./top/consumed"
 import Calendar from "../calendar"
-import Sidebar from "./top/sidebar"
+import Sidebar from "../page/sidebar"
 
 export default function Dashboard() {
 
