@@ -8,8 +8,8 @@ export default function Dashboard() {
     return (
         <div className="flex">
             <Sidebar/>
-            <main className="w-full h-screen p-10">
-                <div className="flex justify-between 2xl:px-[3vw] px-[1vw] min-w-[1350px]">
+            <main className="min-w-[1370px] 2xl:min-w-[1450px] h-screen p-10">
+                <div className="flex justify-between xl:ml-6 ml-3">
                     <Calendar />
                     <Weight />
                     <Consumed />
