@@ -6,7 +6,7 @@ export default function Search() {
     const [inputError, setInputError] = useState(false)
     const [searchError, setSearchError] = useState(false)
     const [searchResults, setSearchResults] = useState([])
-    const [nutritionResults, setNutritionResults] = useState()
+    const [nutritionResults, setNutritionResults] = useState([])
 
     const onChangeSearch = (event) => {
         setSearch(event.target.value)
@@ -30,18 +30,28 @@ export default function Search() {
     }
 
     const fetchSearch = async () => {
-        const response = await fetch(
-            `https://trackapi.nutritionix.com/v2/search/instant?query=${search}`,
-            {
-                headers: {
-                    "x-app-id": "eaff6795",
-                    "x-app-key": "4c3f736fe3e4cdb9af5b84bde1bd0089",
-                },
-            }
+        var myHeaders = new Headers();
+        myHeaders.append("x-app-id", "eaff6795");
+        myHeaders.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089");
+        
+        var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+        
+        await fetch("https://trackapi.nutritionix.com/v2/search/instant?query=apple", requestOptions)
+        .then(response => response.text())
+        .then(
+            result => (
+                handleSearch(JSON.parse(result).common)
+            )
         )
-        const data = await response.json()
-        data = data.common
-        const dataList = []
+        .catch(error => console.log('error', error));
+    }
+
+    const handleSearch = (data) => {
+        const dataList=[]
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
                 dataList.push(data[key])
@@ -50,6 +60,9 @@ export default function Search() {
         if (dataList[0] !== undefined) {
             setSearchResults([dataList[0], dataList[1], dataList[2], dataList[3]])
             fetchNutrition(dataList[0].food_name)
+                .then(() => {fetchNutrition(dataList[1].food_name)})
+                .then(() => {fetchNutrition(dataList[2].food_name)})
+                .then(() => {fetchNutrition(dataList[3].food_name)})
         } else {
             setSearchError(true)
         }
@@ -84,7 +97,7 @@ export default function Search() {
 
         await fetch("https://trackapi.nutritionix.com/v2/natural/nutrients", requestOptions)
             .then(response => response.text())
-            .then(result => {setNutritionResults(JSON.parse(result))})
+            .then(result => {setNutritionResults(nutritionResults => [...nutritionResults, JSON.parse(result)])})
             .catch(error => console.log('error', error))
 
         // console.log(nutritionResults)
@@ -94,12 +107,17 @@ export default function Search() {
     function RenderSearchResults() {
         if (searchResults.length > 0) {
             console.log("search results: " + JSON.stringify(searchResults[0]))
-            const results = searchResults.map((result) => 
+            const results = searchResults.map((result, index) => 
                 <div className="flex justify-between w-4/5 bg-transparent border-2 border-slate-300 rounded-lg p-4">
                     <div className="flex flex-col">
                         <h1>{result.food_name}</h1>
                         <h4>{result.serving_qty} {result.serving_unit}</h4>
                     </div>
+                    <h4 className="text-[0.4rem]">
+                        {nutritionResults[index] === undefined ? null :
+                        JSON.stringify(nutritionResults[index].foods[0])
+                        }
+                    </h4>
                 </div>
             )
 
