@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
-import Sidebar from "../components/dashboard/top/sidebar"
+import Sidebar from "../components/page/sidebar"
 import Dashboard from "../components/dashboard"
 import Account from "../components/account"
 

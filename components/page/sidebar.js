@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from 'next/link'
-import Logo from "../../../assets/logo.png"
+import Logo from "../../assets/logo.png"
 import { getAuth, signOut } from "firebase/auth"
 import { MdOutlineDashboard, MdSearch, MdOutlineSettings, MdOutlineLogout } from "react-icons/md"
 
