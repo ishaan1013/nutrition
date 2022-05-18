@@ -40,17 +40,12 @@ export default function Search() {
         redirect: 'follow'
         };
         
-        await fetch("https://trackapi.nutritionix.com/v2/search/instant?query=apple", requestOptions)
-        .then(response => response.text())
-        .then(
-            result => (
-                handleSearch(JSON.parse(result).common)
-            )
-        )
-        .catch(error => console.log('error', error));
+        const response = await fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${search}`, requestOptions)
+        const result = await response.text()
+        await handleSearch(JSON.parse(result).common)
     }
 
-    const handleSearch = (data) => {
+    const handleSearch = async (data) => {
         const dataList=[]
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
@@ -59,10 +54,10 @@ export default function Search() {
         }
         if (dataList[0] !== undefined) {
             setSearchResults([dataList[0], dataList[1], dataList[2], dataList[3]])
-            fetchNutrition(dataList[0].food_name)
-                .then(() => {fetchNutrition(dataList[1].food_name)})
-                .then(() => {fetchNutrition(dataList[2].food_name)})
-                .then(() => {fetchNutrition(dataList[3].food_name)})
+            await fetchNutrition(dataList[0].food_name)
+                .then(() => {return fetchNutrition(dataList[1].food_name)})
+                .then(() => {return fetchNutrition(dataList[2].food_name)})
+                .then(() => {return fetchNutrition(dataList[3].food_name)})
         } else {
             setSearchError(true)
         }
