@@ -3,8 +3,9 @@ import { useState } from "react"
 import { useAppContext } from "../global/state"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
-import Sidebar from "../components/page/sidebar"
-import Dashboard from "../components/dashboard"
+import Sidebar from "../components/sidebar"
+// import Dashboard from "../components/dashboard"
+import Page from "../components/page"
 import Account from "../components/account"
 
 export default function Home() {
@@ -65,7 +66,7 @@ export default function Home() {
       </>
       }
 
-      {userIn ? <Dashboard /> : <Account />}
+      {userIn ? <Page /> : <Account />}
     </>
   )
 }

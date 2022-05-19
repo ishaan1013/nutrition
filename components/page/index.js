@@ -1,18 +1,21 @@
-import Dashboard from "../dashboard"
-import Sidebar from "./sidebar"
+import {useState} from "react"
 
-export default function Dashboard() {
+import Dashboard from "../dashboard"
+import Sidebar from "../sidebar"
+import Search from "../search"
+
+export default function Page() {
+    const [isSearching, setIsSearching] = useState(false)
 
     return (
         <div className="flex">
-            <Sidebar/>
-            <main className="w-full h-screen p-10">
-                <div className="flex justify-between 2xl:px-[3vw] px-[1vw] min-w-[1350px]">
-                    <Calendar />
-                    <Weight />
-                    <Consumed />
-                </div>
-            </main>
+            <Sidebar isSearching={isSearching} setIsSearching={setIsSearching}/>
+            { isSearching &&
+                <section className="absolute h-screen w-screen flex items-center justify-center">
+                    <Search />
+                </section>
+            }
+            <Dashboard />
         </div>
     )
 }
