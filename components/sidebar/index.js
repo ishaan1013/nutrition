@@ -18,7 +18,7 @@ export default function Sidebar(props) {
 
     return (
         <>
-            <nav className="z-50 h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-gradient-to-tl from-blue-400 to-indigo-300">
+            <nav className="z-50 select-none h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-gradient-to-tl from-blue-400 to-indigo-300">
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover1" className="cursor-pointer">
@@ -34,8 +34,14 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover2">
-                            <Link href="/" passHref>
-                                <MdOutlineDashboard className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                            <Link 
+                            href="/" 
+                            passHref
+                            >
+                                <MdOutlineDashboard 
+                                onClick={() => {props.setIsSearching(false)}}
+                                className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
+                                />
                             </Link>
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling2">
