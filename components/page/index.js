@@ -11,9 +11,13 @@ export default function Page() {
         <div className="flex">
             <Sidebar isSearching={isSearching} setIsSearching={setIsSearching}/>
             { isSearching &&
-                <section className="absolute h-screen w-screen flex items-center justify-center">
-                    <Search />
-                </section>
+                <>
+                    <section className="z-40 absolute h-screen w-screen flex items-center justify-center">
+                        <Search />
+                    </section>
+                    
+                    <div className="z-30 backdrop-blur-md h-screen w-screen absolute"/>
+                </>
             }
             <Dashboard />
         </div>

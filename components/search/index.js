@@ -30,15 +30,15 @@ export default function Search() {
     }
 
     const fetchSearch = async () => {
-        var myHeaders = new Headers();
-        myHeaders.append("x-app-id", "eaff6795");
-        myHeaders.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089");
+        var myHeaders = new Headers()
+        myHeaders.append("x-app-id", "eaff6795")
+        myHeaders.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089")
         
         var requestOptions = {
-        method: 'GET',
+        method: "GET",
         headers: myHeaders,
-        redirect: 'follow'
-        };
+        redirect: "follow"
+        }
         
         const response = await fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${search}`, requestOptions)
         const result = await response.text()
@@ -76,24 +76,24 @@ export default function Search() {
     }, [inputError])
 
     const fetchNutrition = async (foodName) => {
-        var h = new Headers();
-        h.append("accept", "application/json");
-        h.append("x-app-id", "eaff6795");
-        h.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089");
-        h.append("x-remote-user-id", "1");
-        h.append("Content-Type", "application/json");
+        var h = new Headers()
+        h.append("accept", "application/json")
+        h.append("x-app-id", "eaff6795")
+        h.append("x-app-key", "4c3f736fe3e4cdb9af5b84bde1bd0089")
+        h.append("x-remote-user-id", "1")
+        h.append("Content-Type", "application/json")
 
         var requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: h,
             body: JSON.stringify({ "query": foodName }),
-            redirect: 'follow'
+            redirect: "follow"
         }
 
         await fetch("https://trackapi.nutritionix.com/v2/natural/nutrients", requestOptions)
             .then(response => response.text())
             .then(result => {setNutritionResults(nutritionResults => [...nutritionResults, JSON.parse(result)])})
-            .catch(error => console.log('error', error))
+            .catch(error => console.log("error", error))
 
         // console.log(nutritionResults)
         // console.log(JSON.parse(nutritionResults))
@@ -103,7 +103,7 @@ export default function Search() {
         if (searchResults.length > 0) {
             console.log("search results: " + JSON.stringify(searchResults[0]))
             const results = searchResults.map((result, index) => 
-                <div className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none">
+                <div key={index} className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none">
                     <div className="flex flex-col">
                         <h1 className="text-slate-600">{result.food_name}</h1>
                         <h4 className="text-slate-600 text-sm">{result.serving_qty} {result.serving_unit}</h4>

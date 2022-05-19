@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from 'next/link'
+import Link from "next/link"
 import Logo from "../../assets/logo.png"
 import { getAuth, signOut } from "firebase/auth"
 import { MdOutlineDashboard, MdSearch, MdOutlineSettings, MdOutlineLogout } from "react-icons/md"
@@ -22,7 +22,7 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover1" className="cursor-pointer">
-                            <Link href="/about">
+                            <Link href="/about" passHref>
                                 <Image src={Logo} width={36} height={36}/>
                             </Link>
                         </li>
@@ -34,7 +34,7 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover2">
-                            <Link href="/">
+                            <Link href="/" passHref>
                                 <MdOutlineDashboard className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                             </Link>
                         </li>
@@ -56,7 +56,7 @@ export default function Sidebar(props) {
                     </div>
                     <div className="relative flex items-center">
                         <li id="customHover4">
-                            <Link href="/settings">
+                            <Link href="/settings" passHref>
                                 <MdOutlineSettings className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                             </Link>
                         </li>
