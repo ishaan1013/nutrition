@@ -3,6 +3,7 @@ import firebase from "firebase/app"
 import { getAuth, signInWithEmailAndPassword, signInAnonymously  } from "firebase/auth"
 import  { useState } from "react"
 
+import Guest from "./guest"
 
 const auth = getAuth()
 
@@ -55,21 +56,10 @@ export default function Login() {
             })
     }
 
-    function anon() {
-        signInAnonymously(auth)
-            .then(() => {
-                console.log("signed in anonymously")
-            })
-            .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
-                // ...
-            })
-    }
-
     return(
         <>
-            <div
+            <Guest />
+            {/* <div
             onClick={() => anon()}
             className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 cursor-pointer font-medium"
             >
@@ -77,7 +67,7 @@ export default function Login() {
             </div>
             <p className="text-slate-600 text-xs font-medium flex items-center">
                 Anonymously log in. Your data will not be saved.
-            </p>
+            </p> */}
 
             <div className="w-full flex justify-center items-center mb-3 mt-7">
                 <div className="w-full h-[0.115rem] bg-slate-600"/>
