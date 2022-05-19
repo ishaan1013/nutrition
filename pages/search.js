@@ -20,12 +20,12 @@ export default function Search() {
     const foodSearch = () => {
         console.log("searching...")
         console.log("search: " + search)
+        setSearchResults([])
+        setNutritionResults([])
         if (search !== "") {
             fetchSearch()
         } else {
             setInputError(true)
-            setSearchResults([])
-            setNutritionResults("")
         }
     }
 
@@ -103,20 +103,23 @@ export default function Search() {
         if (searchResults.length > 0) {
             console.log("search results: " + JSON.stringify(searchResults[0]))
             const results = searchResults.map((result, index) => 
-                <div className="flex justify-between w-4/5 bg-transparent border-2 border-slate-300 rounded-lg p-4">
+                <div className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none">
                     <div className="flex flex-col">
-                        <h1>{result.food_name}</h1>
-                        <h4>{result.serving_qty} {result.serving_unit}</h4>
+                        <h1 className="text-slate-600">{result.food_name}</h1>
+                        <h4 className="text-slate-600 text-sm">{result.serving_qty} {result.serving_unit}</h4>
                     </div>
-                    <h4 className="text-[0.4rem]">
-                        {nutritionResults[index] === undefined ? null :
-                        JSON.stringify(nutritionResults[index].foods[0])
-                        }
-                    </h4>
+                    <div className="flex flex-col items-end">
+                        <h1 className="mb-[-0.3rem] text-slate-600">
+                            {nutritionResults[index] === undefined ? null :
+                            JSON.stringify(nutritionResults[index].foods[0].nf_calories)
+                            }
+                        </h1>
+                        <h4 className="text-slate-600 text-sm">cals</h4>
+                    </div>
                 </div>
             )
 
-            return (<div>{results}</div>)
+            return (<div className="w-4/5">{results}</div>)
         }
         return null
     }
@@ -124,7 +127,7 @@ export default function Search() {
     // console.log(searchResults)
     return (
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className="w-1/3 py-12 bg-white rounded-[3rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
+            <div className="w-1/3 py-12 bg-white rounded-[2rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
                 <div className="flex relative items-center w-4/5 ">
                     <input
                     id="search"
