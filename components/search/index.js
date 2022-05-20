@@ -119,7 +119,7 @@ export default function Search() {
                 </div>
             )
 
-            return (<div className="w-4/5">{results}</div>)
+            return (<div className="w-4/5 mt-8">{results}</div>)
         }
         return null
     }
@@ -154,7 +154,7 @@ export default function Search() {
                 </div>
                 }
 
-                <div className="flex items-center mt-2 mb-8 select-none">
+                <div className="flex items-center mt-2 select-none">
                     <p className="font-medium text-xs text-slate-400">also search with &nbsp;</p>
                     <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-500 px-1 py-[0.12rem] rounded-md">enter</div>
                 </div>
