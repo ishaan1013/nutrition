@@ -1,8 +1,8 @@
 import Image from "next/image"
 import { useState } from "react"
 
-import LogIn from "./logIn"
-import SignUp from "./signUp"
+import LogIn from "./logIn/logIn"
+import SignUp from "./signUp/signUp"
 import Logo from "../../assets/logo.png"
 
 export default function Account() {
