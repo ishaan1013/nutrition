@@ -19,6 +19,7 @@ export default function Home() {
       const uid = user.uid
       setUserIn(true)
       console.log(user)
+      console.log(user.uid)
       appContext.setGlobalUserIn(true)
     } else {
       setUserIn(false)

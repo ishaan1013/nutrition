@@ -3,6 +3,7 @@ import firebase from "firebase/app"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import  { useState } from "react"
 
+import signUpHandler from "./signUpHandler"
 import Guest from "../guest"
 
 const auth = getAuth()
