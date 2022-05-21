@@ -1,5 +1,10 @@
+import { app } from "../../global/firebase"
+import firebase from "firebase/app"
+
 import Image from "next/image"
 import Link from "next/link"
+import {useRouter} from "next/router"
+
 import Logo from "../../assets/logo.png"
 import { getAuth, signOut } from "firebase/auth"
 import { MdOutlineDashboard, MdSearch, MdOutlineSettings, MdOutlineLogout } from "react-icons/md"
@@ -14,6 +19,56 @@ export default function Sidebar(props) {
         }).catch((error) => {
             console.log(error)
         })
+    }
+
+    const router = useRouter()
+    
+    function SearchButton() {
+        if (router.pathname != "/") { 
+            return (
+                <Link
+                href="/"
+                passHref
+                >
+                    <MdSearch className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                </Link>
+            )   
+        } else {
+            return (
+                <div
+                onClick={() => {props.setIsSearching(!props.isSearching)}}
+                >
+                    <MdSearch className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                </div>
+            )
+        }
+    }
+
+    function DashButton() {
+        if (router.pathname != "/") { 
+            return (
+                <Link 
+                href="/" 
+                passHref
+                >
+                    <MdOutlineDashboard 
+                    className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
+                    />
+                </Link>
+            )   
+        } else {
+            return (
+                <Link 
+                href="/" 
+                passHref
+                >
+                    <MdOutlineDashboard 
+                    onClick={() => {props.setIsSearching(false)}}
+                    className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
+                    />
+                </Link>
+            )
+        }
     }
 
     return (
@@ -34,15 +89,7 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover2">
-                            <Link 
-                            href="/" 
-                            passHref
-                            >
-                                <MdOutlineDashboard 
-                                onClick={() => {props.setIsSearching(false)}}
-                                className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
-                                />
-                            </Link>
+                            <DashButton />
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling2">
                             Dashboard
@@ -50,11 +97,7 @@ export default function Sidebar(props) {
                     </div>
                     <div className="relative flex items-center">
                         <li id="customHover3">
-                            <div
-                            onClick={() => {props.setIsSearching(!props.isSearching)}}
-                            >
-                                <MdSearch className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
-                            </div>
+                            <SearchButton />
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling3">
                             Search
