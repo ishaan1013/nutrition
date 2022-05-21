@@ -14,8 +14,11 @@ export default function Dashboard() {
                 <Consumed />
             </div>
             <div className="w-full h-[0.15rem] bg-slate-200 my-12"/>
-            <div className="min-w-[1300px] 2xl:w-[1400px] flex justify-between xl:ml-6 ml-3">
+            <div className="min-w-[1400px] 2xl:w-[1700px] flex justify-between xl:ml-6 ml-3">
                 <FoodList mealName="Breakfast" />
+                <FoodList mealName="Lunch" />
+                <FoodList mealName="Dinner" />
+                <FoodList mealName="Other" />
             </div>
         </main>
     )

@@ -14,7 +14,19 @@ export default function FoodList(props) {
                     </div>
                 </div>
 
-                <div className="w-full h-[0.15rem] bg-slate-200 mt-3 mb-6"/>
+                <div className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none">
+                    <div className="flex flex-col">
+                        <h1 className="text-slate-600">Food Name</h1>
+                        <h4 className="text-slate-600 text-sm">1 unit</h4>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        <h1 className="mb-[-0.3rem] text-slate-600">
+                            660
+                        </h1>
+                        <h4 className="text-slate-600 text-sm">cals</h4>
+                    </div>
+                </div>
+
             </section>
         </>
     )
