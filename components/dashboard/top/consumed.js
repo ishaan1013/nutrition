@@ -76,7 +76,7 @@ export default function Consumed() {
                     className="text-slate-600 cursor-pointer hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"
                     />
                 </div>
-                <Line className="!w-[102%] !h-[56%] absolute bottom-[-3px] left-[-3px]" options={options} data={data} />
+                <Line className="!w-[102%] !h-[56%] absolute bottom-[-4px] left-[-3px]" options={options} data={data} />
             </section>
         </>
     )
