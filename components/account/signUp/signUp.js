@@ -1,4 +1,4 @@
-import { app } from "../../../global/firebase"
+import { app } from "../../../global/db/firebase"
 import firebase from "firebase/app"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import  { useState } from "react"

@@ -20,10 +20,10 @@ export default function Home() {
       setUserIn(true)
       console.log(user)
       console.log(user.uid)
-      appContext.setGlobalUserIn(true)
+      appContext.setGlobalUid(uid)
     } else {
       setUserIn(false)
-      appContext.setGlobalUserIn(false)
+      appContext.setGlobalUid("")
     }
   })
 

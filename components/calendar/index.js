@@ -195,7 +195,7 @@ export default function Calendar() {
                         <ul>
                             <li className="flex items-center text-white font-medium select-none">
                                 <Checkbox/>
-                                thing 1
+                                {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year}
                             </li>
                             <li className="flex items-center text-white font-medium select-none">
                                 <Checkbox/>

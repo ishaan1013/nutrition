@@ -8,11 +8,11 @@ export function AppWrapper({ children }) {
         day: `${current.getDate()}`,
         month: `${current.getMonth() + 1}`,
         year: `${current.getFullYear()}`,
-        globalUserIn: false
+        globalUid: ""
     }
 
-    const setGlobalUserIn = (status) => {
-        sharedState.globalUserIn = status
+    const setGlobalUid = (status) => {
+        sharedState.globalUid = status
     }
 
     const changeDayContext = (day) => {
@@ -33,7 +33,7 @@ export function AppWrapper({ children }) {
             changeDayContext, 
             changeMonthContext, 
             changeYearContext, 
-            setGlobalUserIn 
+            setGlobalUid 
         }}>
             {children}
         </AppContext.Provider>
