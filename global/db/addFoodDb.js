@@ -2,7 +2,7 @@ import { useState } from "react"
 import { getDatabase, ref, set } from "firebase/database"
 // import { useAppContext } from "../../global/state"
 
-export default function addFoodDb(meal, foodName, qty, unit) {
+export default function addFoodDb(userId, date, meal, foodName, qty, unit, calories) {
     // const appContext = useAppContext()
 
     // const [userId, setUserId] = useState(appContext.sharedState.uid)
@@ -11,8 +11,9 @@ export default function addFoodDb(meal, foodName, qty, unit) {
     const db = getDatabase()
     console.log("addFoodDb")
 
-    set(ref(db, ("xZzRLWPvldUFPlzyXNhXOIjbLAR2" + "/" + "20220521" + "/" + meal + "/" + foodName)), {
+    set(ref(db, (userId + "/" + date + "/" + meal + "/" + foodName)), {
         qty: qty,
-        unit: unit
+        unit: unit,
+        calories: calories,
     })
 }

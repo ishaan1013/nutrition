@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react"
 import addFoodDb from "../../global/db/addFoodDb"
-// import {useAppContext} from "../../global/state"
+import {useAppContext} from "../../global/state"
 
 import {MdSearch} from "react-icons/md"
 
 export default function Search() {
-    // const appContext = useAppContext()
+    const appContext = useAppContext()
 
     const [search, setSearch] = useState("")
     const [inputError, setInputError] = useState(false)
@@ -107,10 +107,22 @@ export default function Search() {
     function RenderSearchResults() {
         if (searchResults.length > 0) {
             console.log("search results: " + JSON.stringify(searchResults[0]))
+
+            const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
+
             const results = searchResults.map((result, index) => 
                 <div 
                 key={index} 
-                onClick={() => {addFoodDb("breakfast", result.food_name, result.serving_qty, result.serving_unit)}}
+                onClick={() => {
+                    addFoodDb(
+                        appContext.sharedState.globalUid, 
+                        date, "breakfast", 
+                        result.food_name, 
+                        result.serving_qty, 
+                        result.serving_unit,
+                        nutritionResults[index].foods[0].nf_calories
+                    )
+                }}
                 className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
                 >
                     <div className="flex flex-col">
