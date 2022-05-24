@@ -8,7 +8,12 @@ export function AppWrapper({ children }) {
         day: `${current.getDate()}`,
         month: `${current.getMonth() + 1}`,
         year: `${current.getFullYear()}`,
-        globalUid: ""
+        globalUid: "",
+        updateFoods: true,
+    }
+
+    const setUpdateFoods = (status) => {
+        sharedState.updateFoods = status    
     }
 
     const setGlobalUid = (status) => {
@@ -33,7 +38,8 @@ export function AppWrapper({ children }) {
             changeDayContext, 
             changeMonthContext, 
             changeYearContext, 
-            setGlobalUid 
+            setGlobalUid,
+            setUpdateFoods,
         }}>
             {children}
         </AppContext.Provider>

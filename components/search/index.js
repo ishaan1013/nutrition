@@ -116,7 +116,8 @@ export default function Search() {
                 onClick={() => {
                     addFoodDb(
                         appContext.sharedState.globalUid, 
-                        date, "breakfast", 
+                        date, 
+                        "breakfast", 
                         result.food_name, 
                         result.serving_qty, 
                         result.serving_unit,
@@ -145,7 +146,6 @@ export default function Search() {
         return null
     }
 
-    // console.log(searchResults)
     return (
         <div className="w-screen h-screen flex items-center justify-center">
             <div className="w-1/3 py-12 bg-white rounded-[2rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
