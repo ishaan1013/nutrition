@@ -17,6 +17,6 @@ export default function addFoodDb(userId, date, meal, foodName, qty, unit, calor
         foodName: foodName,
         qty: qty,
         unit: unit,
-        calories: calories,
+        calories: Math.round(calories),
     })
 }

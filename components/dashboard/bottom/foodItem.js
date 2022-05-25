@@ -7,28 +7,30 @@ export default function FoodItem(props) {
     const [foods, setFoods] = useState()
     const db = getDatabase()
 
-    // const mealRef = ref(db, (props.userId + "/" + props.date + "/" + props.meal))
-    // onValue(mealRef, (snapshot) => {
-    //     const data = snapshot.val()
-    //     console.log(data)  
-    //     setFoods(data)
-    // })
-
     useEffect(() => {
-        console.log("getFoods")
-        const dbRef = ref(getDatabase())
-        
-        get(child(dbRef, (props.userId + "/" + props.date + "/" + props.meal))).then((snapshot) => {
-            if (snapshot.exists()) {
-                // console.log(snapshot.val())
-                setFoods(snapshot.val())
-            } else {
-                console.log("No data available")
-            }
-        }).catch((error) => {
-            console.error(error)
+        const mealRef = ref(db, (props.userId + "/" + props.date + "/" + props.meal))
+        onValue(mealRef, (snapshot) => {
+            const data = snapshot.val()
+            console.log(data)  
+            setFoods(data)
         })
     }, [])
+
+    // useEffect(() => {
+    //     console.log("getFoods")
+    //     const dbRef = ref(getDatabase())
+        
+    //     get(child(dbRef, (props.userId + "/" + props.date + "/" + props.meal))).then((snapshot) => {
+    //         if (snapshot.exists()) {
+    //             // console.log(snapshot.val())
+    //             setFoods(snapshot.val())
+    //         } else {
+    //             console.log("No data available")
+    //         }
+    //     }).catch((error) => {
+    //         console.error(error)
+    //     })
+    // }, [])
 
     // function getFoods() {
     //     console.log("getFoods")
@@ -49,9 +51,18 @@ export default function FoodItem(props) {
     function RenderFoodItems() {
         if (foods !== null && foods !== undefined) {
             const foodList = []
+            const cals = []
+            var index = 0
             Object.entries(foods).forEach(([key, val]) => {
                 foodList.push(val)
-            });
+                cals[index] = val.calories
+                index += 1
+                console.log("val.calories: "+val.calories)
+                console.log("key: "+ key)
+                console.log("cals: "+ cals)
+            })
+
+            props.setTotalCal(cals.reduce((partialSum, a) => partialSum + a, 0))
 
             const results = foodList.map((result, index) => 
                 <div 
@@ -64,7 +75,7 @@ export default function FoodItem(props) {
                     </div>
                     <div className="flex flex-col items-end">
                         <h1 className="mb-[-0.3rem] text-slate-600">
-                            {Math.round(result.calories)}
+                            {result.calories}
                         </h1>
                         <h4 className="text-slate-600 text-sm">cals</h4>
                     </div>
