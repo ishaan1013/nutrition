@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import addFoodDb from "../../global/db/addFoodDb"
 import {useAppContext} from "../../global/state"
-import { FaChevronLeft } from "react-icons/fa"
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 import {MdSearch} from "react-icons/md"
 
@@ -15,6 +15,7 @@ export default function Search() {
     const [nutritionResults, setNutritionResults] = useState([])
 
     const [foodSelected, setFoodSelected] = useState(true)
+    const [foodIndex, setFoodIndex] = useState(-1)
 
     const onChangeSearch = (event) => {
         setSearch(event.target.value)
@@ -127,6 +128,7 @@ export default function Search() {
                     //     nutritionResults[index].foods[0].nf_calories
                     // )
                     setFoodSelected(true)
+                    setFoodIndex(index)
                 }}
                 className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
                 >
@@ -161,7 +163,7 @@ export default function Search() {
                         value={search}
                         onChange={onChangeSearch}
                         onKeyPress={handlePress}
-                        className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 text-slate-600 font-medium"
+                        className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 text-slate-600 placeholder:text-slate-300 font-medium"
                         />
                         <MdSearch
                         className="w-8 h-8 p-1 rounded-full cursor-pointer text-slate-600 hover:bg-slate-100/80 absolute right-2"
@@ -188,21 +190,48 @@ export default function Search() {
         }
         else {
             return (
-                <>
-                    <div className="w-full px-12 flex justify-between items-center">
-                        <FaChevronLeft
-                        onClick={() => {setFoodSelected(false)}}
-                        className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.45rem] h-[2.2rem] w-[2.2rem] rounded-full"
-                        />
-                        <h1
-                        className="text-slate-600 text-2xl mb-2 font-bold"
-                        >Food Name</h1>
-                        <div className="flex flex-col items-end">
-                            <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">500</h1>
-                            <p className="text-slate-500/90 font-medium">cals</p>
+                <div className="w-full h-full px-12">
+                    <div className="w-full relative flex justify-center mb-10">
+                        <div className="absolute">
+                            <h1 className="text-slate-600 text-2xl font-bold mt-[0.35rem]">Food Name</h1>
+                        </div>
+                        <div className="w-full flex justify-between items-center">
+                            <FaChevronLeft
+                            onClick={() => {setFoodSelected(false)}}
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.45rem] h-[2.2rem] w-[2.2rem] rounded-full"
+                            />
+                            {/* <h1 className="text-slate-600 text-2xl font-bold">Food Name</h1> */}
+                            <div className="flex flex-col items-end">
+                                <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
+                                    {nutritionResults[foodIndex] === undefined ? null :
+                                    JSON.stringify(nutritionResults[foodIndex].foods[0].nf_calories)
+                                    }
+                                </h1>
+                                <p className="text-slate-500/90 font-medium">cals</p>
+                            </div>
                         </div>
                     </div>
-                </>
+                    <div className="flex justify-center items-center">
+                        <input
+                        id="qtyInput"
+                        placeholder="e.g. 120"
+                        // value={email}
+                        // onChange={onChangeEmail}
+                        className="w-1/5 rounded-lg p-2 focus:outline-none focus:border-slate-400 border-slate-300 border-2 placeholder:text-slate-300 text-slate-600 font-medium"
+                        />
+                        <div
+                        className="ml-4 rounded-lg select-none px-3 py-2 border-slate-300 border-2 text-slate-600 font-medium flex items-center justify-center"
+                        >
+                            <FaChevronLeft
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-2 rounded-full"
+                            />
+                            unit
+                            <FaChevronRight
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-2 rounded-full"
+                            />
+                        </div>
+                    </div>
+                </div>
             )
         }
     }
@@ -217,7 +246,7 @@ export default function Search() {
                     value={search}
                     onChange={onChangeSearch}
                     onKeyPress={handlePress}
-                    className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 text-slate-600 font-medium"
+                    className="w-full rounded-lg p-2 pr-10 focus:outline-none bg-transparent focus:border-slate-400 border-slate-300 border-2 placeholder:text-slate-300 text-slate-600 font-medium"
                     />
                     <MdSearch
                     className="w-8 h-8 p-1 rounded-full cursor-pointer text-slate-600 hover:bg-slate-100/80 absolute right-2"

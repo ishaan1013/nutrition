@@ -77,7 +77,7 @@ export default function SignUp() {
                     placeholder="user@example.com"
                     value={email}
                     onChange={onChangeEmail}
-                    className="w-full rounded-lg px-2 pb-[0.45rem] pt-[1.2rem] focus:outline-none focus:border-slate-400 border-slate-300 border-2 text-slate-600"
+                    className="w-full rounded-lg px-2 pb-[0.45rem] pt-[1.2rem] focus:outline-none focus:border-slate-400 border-slate-300 border-2 placeholder:text-slate-300 text-slate-600"
                     />
                 </div>
                 <div className="relative mt-5 mb-2">
@@ -89,7 +89,7 @@ export default function SignUp() {
                     placeholder="********"
                     value={pass}
                     onChange={onChangePass}
-                    className="w-full rounded-lg px-2 pb-[0.45rem] pt-[1.2rem] focus:outline-none focus:border-slate-400 border-slate-300 border-2 text-slate-600"
+                    className="w-full rounded-lg px-2 pb-[0.45rem] pt-[1.2rem] focus:outline-none focus:border-slate-400 border-slate-300 border-2 placeholder:text-slate-300 text-slate-600"
                     />
                 </div>
                 <button
