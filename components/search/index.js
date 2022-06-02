@@ -192,8 +192,12 @@ export default function Search() {
             return (
                 <div className="w-full h-full px-12">
                     <div className="w-full relative flex justify-center mb-10">
-                        <div className="absolute">
-                            <h1 className="text-slate-600 text-2xl font-bold mt-[0.35rem]">Food Name</h1>
+                        <div className="absolute top-2">
+                            <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black capitalize">
+                                {searchResults[foodIndex] === undefined ? null :
+                                JSON.stringify(searchResults[foodIndex].food_name).replace(/^"(.+(?="$))"$/, '$1')
+                                }
+                            </h1>
                         </div>
                         <div className="w-full flex justify-between items-center">
                             <FaChevronLeft
