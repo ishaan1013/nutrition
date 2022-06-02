@@ -235,6 +235,9 @@ export default function Search() {
                             />
                         </div>
                     </div>
+                    <button
+                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-16 ease-in-out duration-100 font-medium"
+                    >Add Food</button>
                 </div>
             )
         }
