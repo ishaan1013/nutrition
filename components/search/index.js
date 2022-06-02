@@ -235,6 +235,82 @@ export default function Search() {
                             />
                         </div>
                     </div>
+                    
+                    <div className="w-full flex justify-evenly my-6">
+                        <div className="relative my-1 -translate-x-[2.3rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="60"
+                                />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-slate-300 stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="0"
+                                />
+                            </svg>
+                        </div>
+                        <div className="relative my-1 -translate-x-[2.3rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="60"
+                                />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-slate-300 stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="0"
+                                />
+                            </svg>
+                        </div>
+                        <div className="relative my-1 -translate-x-[2.3rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="60"
+                                />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                                <circle
+                                cx="35"
+                                cy="35"
+                                r="25"
+                                stroke-linecap="round"
+                                className="stroke-slate-300 stroke-[12] fill-transparent"
+                                stroke-dasharray="160"
+                                stroke-dashoffset="0"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
                     <button
                     className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-16 ease-in-out duration-100 font-medium"
                     >Add Food</button>
