@@ -236,13 +236,14 @@ export default function Search() {
                         </div>
                     </div>
                     
-                    <div className="w-full flex justify-evenly my-6">
-                        <div className="relative my-1 -translate-x-[2.3rem]">
+                    <div className="w-full flex justify-evenly mt-6">
+                        <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
+                            <p>50%</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
@@ -251,9 +252,9 @@ export default function Search() {
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
@@ -261,12 +262,13 @@ export default function Search() {
                                 />
                             </svg>
                         </div>
-                        <div className="relative my-1 -translate-x-[2.3rem]">
+                        <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
+                            <p>50%</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
@@ -275,9 +277,9 @@ export default function Search() {
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
@@ -285,12 +287,13 @@ export default function Search() {
                                 />
                             </svg>
                         </div>
-                        <div className="relative my-1 -translate-x-[2.3rem]">
+                        <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
+                            <p>50%</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
@@ -299,9 +302,9 @@ export default function Search() {
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
                                 <circle
-                                cx="35"
-                                cy="35"
-                                r="25"
+                                cx="34"
+                                cy="34"
+                                r="28"
                                 stroke-linecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
                                 stroke-dasharray="160"
