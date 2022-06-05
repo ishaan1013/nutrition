@@ -152,7 +152,7 @@ export default function Search() {
                     <div className="flex flex-col items-end">
                         <h1 className="mb-[-0.3rem] text-slate-600">
                             {nutritionResults[index] === undefined ? null :
-                            JSON.stringify(nutritionResults[index].foods[0].nf_calories)
+                            Math.round(nutritionResults[index].foods[0].nf_calories)
                             }
                         </h1>
                         <h4 className="text-slate-600 text-sm">cals</h4>
@@ -223,8 +223,8 @@ export default function Search() {
                             <div className="flex flex-col items-end">
                                 <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
                                     {nutritionResults[foodIndex] === undefined ? null :
-                                    JSON.stringify(nutritionResults[foodIndex].foods[0].nf_calories)
-                                    // JSON.stringify(nutritionResults[foodIndex].foods[0]) USE THIS FOR ENTIRE JSON NUTRITION
+                                    Math.round(nutritionResults[foodIndex].foods[0].nf_calories)
+                                    // Math.round(nutritionResults[foodIndex].foods[0]) USE THIS FOR ENTIRE JSON NUTRITION
                                     // todo record calories/weight for measurement changes
                                     // todo pcf percentages (they don't change based on weight)
                                     }
