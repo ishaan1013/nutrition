@@ -14,7 +14,8 @@ export default function Search() {
     const [searchResults, setSearchResults] = useState([])
     const [nutritionResults, setNutritionResults] = useState([])
 
-    const [foodSelected, setFoodSelected] = useState(true)
+    const [foodSelected, setFoodSelected] = useState(false)
+    const [foodMeasures, setFoodMeasures] = useState([])
     const [foodIndex, setFoodIndex] = useState(-1)
 
     const onChangeSearch = (event) => {
@@ -127,8 +128,20 @@ export default function Search() {
                     //     result.serving_unit,
                     //     nutritionResults[index].foods[0].nf_calories
                     // )
+                    
                     setFoodSelected(true)
                     setFoodIndex(index)
+                    setFoodMeasures([
+                        {
+                            "serving_weight": nutritionResults[index].foods[0].serving_weight_grams,
+                            "measure": nutritionResults[index].foods[0].serving_unit,
+                            "qty": nutritionResults[index].foods[0].serving_qty
+                        }, 
+                        ...nutritionResults[index].foods[0].alt_measures
+                    ])
+                    console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
+                    console.log("setFoodMeasures:")
+                    console.log(foodMeasures)
                 }}
                 className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
                 >
@@ -160,6 +173,7 @@ export default function Search() {
                         <input
                         id="search"
                         placeholder="Search"
+                        autoFocus
                         value={search}
                         onChange={onChangeSearch}
                         onKeyPress={handlePress}
@@ -201,14 +215,18 @@ export default function Search() {
                         </div>
                         <div className="w-full flex justify-between items-center">
                             <FaChevronLeft
-                            onClick={() => {setFoodSelected(false)}}
+                            onClick={() => {
+                                setFoodSelected(false)
+                            }}
                             className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.45rem] h-[2.2rem] w-[2.2rem] rounded-full"
                             />
-                            {/* <h1 className="text-slate-600 text-2xl font-bold">Food Name</h1> */}
                             <div className="flex flex-col items-end">
                                 <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
                                     {nutritionResults[foodIndex] === undefined ? null :
                                     JSON.stringify(nutritionResults[foodIndex].foods[0].nf_calories)
+                                    // JSON.stringify(nutritionResults[foodIndex].foods[0]) USE THIS FOR ENTIRE JSON NUTRITION
+                                    // todo record calories/weight for measurement changes
+                                    // todo pcf percentages (they don't change based on weight)
                                     }
                                 </h1>
                                 <p className="text-slate-500/90 font-medium">cals</p>
@@ -235,87 +253,92 @@ export default function Search() {
                             />
                         </div>
                     </div>
-                    
-                    <div className="w-full flex justify-evenly mt-6">
+                    <div className="w-full flex justify-evenly mt-16">
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
-                            <p>50%</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                            <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Protein</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="60"
+                                strokeDasharray="175"
+                                strokeDashoffset="60"
                                 />
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="0"
+                                strokeDasharray="175"
+                                strokeDashoffset="0"
                                 />
                             </svg>
                         </div>
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
-                            <p>50%</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                            <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Carbs</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="60"
+                                strokeDasharray="175"
+                                strokeDashoffset="60"
                                 />
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="0"
+                                strokeDasharray="175"
+                                strokeDashoffset="0"
                                 />
                             </svg>
                         </div>
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
-                            <p>50%</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-270 w-[68px] h-[68px]">
+                            <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Fats</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="60"
+                                strokeDasharray="175"
+                                strokeDashoffset="60"
                                 />
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-270 w-[68px] h-[68px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
                                 cy="34"
                                 r="28"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 className="stroke-slate-300 stroke-[12] fill-transparent"
-                                stroke-dasharray="160"
-                                stroke-dashoffset="0"
+                                strokeDasharray="175"
+                                strokeDashoffset="0"
                                 />
                             </svg>
                         </div>
                     </div>
 
                     <button
-                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-16 ease-in-out duration-100 font-medium"
+                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-[4.25rem] ease-in-out duration-100 font-medium"
                     >Add Food</button>
                 </div>
             )
