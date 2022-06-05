@@ -8,6 +8,12 @@ import {MdSearch} from "react-icons/md"
 export default function Search() {
     const appContext = useAppContext()
 
+
+    const [qtyInput, setQtyInput] = useState("")
+
+    const onChangeQty = (event) => {
+        setQtyInput(event.target.value)
+    }  
     const [search, setSearch] = useState("")
     const [inputError, setInputError] = useState(false)
     const [searchError, setSearchError] = useState(false)
@@ -139,9 +145,14 @@ export default function Search() {
                         }, 
                         ...nutritionResults[index].foods[0].alt_measures
                     ])
-                    console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
-                    console.log("setFoodMeasures:")
-                    console.log(foodMeasures)
+                    {foodMeasures[0] === undefined ? null : foodMeasures[0].measure}
+                    if (foodMeasures[0] !== undefined) {
+                        setQtyInput(nutritionResults[index].foods[0].alt_measures[0].qty)
+                    }
+
+                    // console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
+                    // console.log("setFoodMeasures:")
+                    // console.log(foodMeasures)
                 }}
                 className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
                 >
@@ -224,7 +235,8 @@ export default function Search() {
                                 <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
                                     {nutritionResults[foodIndex] === undefined ? null :
                                     Math.round(nutritionResults[foodIndex].foods[0].nf_calories)
-                                    // Math.round(nutritionResults[foodIndex].foods[0]) USE THIS FOR ENTIRE JSON NUTRITION
+                                    // JSON.stringify(nutritionResults[foodIndex].foods[0]) 
+                                    // ! use above for full json
                                     // todo record calories/weight for measurement changes
                                     // todo pcf percentages (they don't change based on weight)
                                     }
@@ -238,8 +250,10 @@ export default function Search() {
                         <input
                         id="qtyInput"
                         placeholder="e.g. 120"
-                        // value={email}
-                        // onChange={onChangeEmail}
+                        value={qtyInput}
+                        onChange={onChangeQty}
+                        autoFocus
+                        type="number"
                         className="w-1/5 rounded-lg p-2 focus:outline-none focus:border-slate-400 border-slate-300 border-2 placeholder:text-slate-300 text-slate-600 font-medium"
                         />
                         <div
