@@ -8,9 +8,7 @@ import {MdSearch} from "react-icons/md"
 export default function Search() {
     const appContext = useAppContext()
 
-
     const [qtyInput, setQtyInput] = useState("")
-
     const onChangeQty = (event) => {
         setQtyInput(event.target.value)
     }  
@@ -21,8 +19,11 @@ export default function Search() {
     const [nutritionResults, setNutritionResults] = useState([])
 
     const [foodSelected, setFoodSelected] = useState(false)
-    const [foodMeasures, setFoodMeasures] = useState([])
     const [foodIndex, setFoodIndex] = useState(-1)
+    const [foodMeasures, setFoodMeasures] = useState([])
+    const [pProtein, setPProtein] = useState(0)
+    const [pCarbs, setPCarbs] = useState(0)
+    const [pFats, setPFats] = useState(0)
 
     const onChangeSearch = (event) => {
         setSearch(event.target.value)
@@ -148,7 +149,12 @@ export default function Search() {
                     {foodMeasures[0] === undefined ? null : foodMeasures[0].measure}
                     if (foodMeasures[0] !== undefined) {
                         setQtyInput(nutritionResults[index].foods[0].alt_measures[0].qty)
+
+                        setPProtein(Math.round(nutritionResults[index].foods[0].nf_protein / nutritionResults[index].foods[0].serving_weight_grams * 100))
+                        setPCarbs(Math.round(nutritionResults[index].foods[0].nf_total_carbohydrate / nutritionResults[index].foods[0].serving_weight_grams * 100))
+                        setPFats(Math.round(nutritionResults[index].foods[0].nf_total_fat / nutritionResults[index].foods[0].serving_weight_grams * 100))
                     }
+
 
                     // console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
                     // console.log("setFoodMeasures:")
@@ -274,7 +280,7 @@ export default function Search() {
                     <div className="w-full flex justify-evenly mt-16">
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Protein</p>
-                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pProtein}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
@@ -301,7 +307,7 @@ export default function Search() {
                         </div>
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Carbs</p>
-                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pCarbs}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
@@ -328,7 +334,7 @@ export default function Search() {
                         </div>
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Fats</p>
-                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold">50%</p>
+                            <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pFats}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
