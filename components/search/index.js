@@ -229,6 +229,7 @@ export default function Search() {
                                     // todo pcf percentages (they don't change based on weight)
                                     }
                                 </h1>
+                                {/* <p className="text-slate-500/90 font-medium">cals</p> */}
                                 <p className="text-slate-500/90 font-medium">cals</p>
                             </div>
                         </div>
@@ -245,11 +246,14 @@ export default function Search() {
                         className="ml-4 rounded-lg select-none px-3 py-2 border-slate-300 border-2 text-slate-600 font-medium flex items-center justify-center"
                         >
                             <FaChevronLeft
-                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-2 rounded-full"
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-4 rounded-full"
                             />
-                            unit
+                            <div className="flex flex-col items-center justify-center">
+                                <p>{foodMeasures[0] === undefined ? null : foodMeasures[0].measure}</p>
+                                <p className="mt-[-0.1rem] text-xs">{foodMeasures[0] === undefined ? null : foodMeasures[0].serving_weight} g</p>
+                            </div>
                             <FaChevronRight
-                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-2 rounded-full"
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-4 rounded-full"
                             />
                         </div>
                     </div>
