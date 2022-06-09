@@ -61,9 +61,9 @@ export default function SignUp() {
             <Guest />
 
             <div className="w-full flex justify-center items-center mb-3 mt-7">
-                <div className="w-full h-[0.115rem] bg-slate-600"/>
+                <div className="w-full h-[0.115rem] bg-slate-500/90"/>
                 <p className="px-4 pb-1 text-slate-600 font-semibold text-sm">or</p>
-                <div className="w-full h-[0.115rem] bg-slate-600"/>
+                <div className="w-full h-[0.115rem] bg-slate-500/90"/>
             </div>
 
             <h1 className="mt-4 text-xl text-slate-600">Sign Up</h1>

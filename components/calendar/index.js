@@ -19,12 +19,12 @@ export default function Calendar() {
             months=[]
             for (let i = 1; i <= 5; i++) {
                 if (i == monthPreview) {
-                    months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                    months.push(<div className="rounded-full bg-white text-blue-400 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer">{m[i-1]}</div>)
                 }
                 else {
                     months.push(
                         <div 
-                        className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                        className="rounded-full bg-white/40 text-blue-400 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer"
                         onClick={() => {setMonthPreview(i)}}
                         >
                             {m[i-1]}
@@ -33,12 +33,12 @@ export default function Calendar() {
                 }
             }
             if (6 == monthPreview) {
-                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[5]}</div>)
+                months.push(<div className="rounded-full bg-white text-blue-400 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer">{m[5]}</div>)
             }
             else {
                 months.push(
                     <div 
-                    className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                    className="rounded-full bg-white/40 text-blue-400 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer"
                     onClick={() => {setMonthPreview(6)}}
                     >
                         {m[5]}
@@ -50,12 +50,12 @@ export default function Calendar() {
             months = []
             for (let i = 7; i <= 11; i++) {
                 if (i == monthPreview) {
-                    months.push(<div className="rounded-full bg-white text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[i-1]}</div>)
+                    months.push(<div className="rounded-full bg-white text-blue-400 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer">{m[i-1]}</div>)
                 }
                 else {
                     months.push(
                         <div 
-                        className="rounded-full bg-white/40 text-indigo-300 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                        className="rounded-full bg-white/40 text-blue-400 mr-4 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer"
                         onClick={() => {setMonthPreview(i)}}
                         >
                             {m[i-1]}
@@ -64,12 +64,12 @@ export default function Calendar() {
                 }
             }
             if (12 == monthPreview) {
-                months.push(<div className="rounded-full bg-white text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer">{m[11]}</div>)
+                months.push(<div className="rounded-full bg-white text-blue-400 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer">{m[11]}</div>)
             }
             else {
                 months.push(
                     <div 
-                    className="rounded-full bg-white/40 text-indigo-300 px-3 py-1 flex items-center justify-center text-center font-medium text-sm select-none cursor-pointer"
+                    className="rounded-full bg-white/40 text-blue-400 px-3 py-1 flex items-center justify-center text-center font-medium text-sm  cursor-pointer"
                     onClick={() => {setMonthPreview(12)}}
                     >
                         {m[11]}
@@ -103,7 +103,7 @@ export default function Calendar() {
         for (let i = 1; i <= daysInMonth(monthPreview, yearPreview); i++) {
             if (appContext.sharedState.day == i && monthPreview == appContext.sharedState.month && yearPreview == appContext.sharedState.year) {
                 days.push(
-                    <div className="text-indigo-300 font-medium text-sm select-none text-center cursor-pointer bg-white py-1 rounded-full">
+                    <div className="text-blue-400 font-medium text-sm  text-center cursor-pointer bg-white py-1 rounded-full">
                         <span
                         className={(i == current.getDate() && monthPreview == current.getMonth() + 1 && yearPreview == current.getFullYear())
                              ? "font-extrabold" : "font-medium"}
@@ -114,7 +114,7 @@ export default function Calendar() {
             else {
                 days.push(
                     <div 
-                    className="text-white font-medium text-sm select-none text-center cursor-pointer hover:bg-white/40 py-1 rounded-full"
+                    className="text-white font-medium text-sm  text-center cursor-pointer hover:bg-white/40 py-1 rounded-full"
                     onClick={() => {changeDay(i)}}
                     >
                         <span
@@ -144,7 +144,7 @@ export default function Calendar() {
 
     return (
         <>
-            <section className="h-[19rem] w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/20 px-10 py-7 mr-8 xl:mr-16">
+            <section className="select-none h-[19rem] w-[36rem] bg-gradient-to-br from-blue-400 to-blue-500/[0.85] rounded-3xl shadow-xl shadow-blue-400/20 px-10 py-7 mr-8 xl:mr-16">
 
                 {/* month selector */}
                 <div className="flex justify-between items-center">
@@ -165,13 +165,13 @@ export default function Calendar() {
                     {/* calendar */}
                     <div className="h-full flex flex-col justify-center w-[55%] px-2">
                         <div className="mt-6 mr-8 grid grid-cols-7 gap-x-1">
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">S</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">M</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">T</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">W</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">T</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">F</div>
-                            <div className="text-white font-bold select-none text-center py-1 rounded-full">S</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">S</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">M</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">T</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">W</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">T</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">F</div>
+                            <div className="text-white font-bold  text-center py-1 rounded-full">S</div>
                         </div>
                         <div className="mr-8 grid grid-cols-7 gap-x-1">
                             <CalendarDays/>
@@ -184,7 +184,7 @@ export default function Calendar() {
                             className="text-white cursor-pointer"
                             onClick={() => {setYearPreview(String(parseInt(yearPreview)-1))}}
                             />
-                            <div className="text-white font-semibold select-none">
+                            <div className="text-white font-semibold ">
                                 {yearPreview}
                             </div>
                             <FaChevronRight
@@ -193,15 +193,15 @@ export default function Calendar() {
                             />
                         </div>
                         <ul>
-                            <li className="flex items-center text-white font-medium select-none">
+                            <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
                                 {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year}
                             </li>
-                            <li className="flex items-center text-white font-medium select-none">
+                            <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
                                 thing 2
                             </li>
-                            <li className="flex items-center text-white font-medium select-none">
+                            <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
                                 thing 3
                             </li>

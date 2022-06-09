@@ -73,7 +73,7 @@ export default function Sidebar(props) {
 
     return (
         <>
-            <nav className="z-50 select-none h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-gradient-to-tl from-blue-400 to-indigo-300">
+            <nav className="z-50 select-none h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
                 <ul>
                     <div className="relative flex items-center">
                         <li id="customHover1" className="cursor-pointer">

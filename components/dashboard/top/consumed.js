@@ -52,7 +52,7 @@ export default function Consumed() {
         labels: labels,
         datasets: [{
             data: [150, 145, 148, 140, 155],
-            borderColor: "#60a5fa",
+            borderColor: "#3b82f6d9",
             tension: 0.3,
             borderWidth: 4,
             pointBackgroundColor: "rgba(0, 0, 0, 0)",

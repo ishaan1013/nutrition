@@ -9,9 +9,9 @@ export default function Account() {
     const [isLogIn, setIsLogIn] = useState(true)
 
     return (
-        <main className="h-screen p-10">
+        <main className="select-none h-screen p-10">
             <section className="h-full w-full flex items-center justify-center">
-                <div className="w-[30rem] bg-white/50 rounded-3xl shadow-2xl shadow-indigo-200/70 p-10 ml-5 relative overflow-hidden backdrop-blur-md flex items-center justify-center flex-col">
+                <div className="w-[30rem] bg-white/[0.55] rounded-3xl shadow-2xl shadow-blue-200/40 p-10 ml-5 relative overflow-hidden backdrop-blur-md flex items-center justify-center flex-col">
                     <Image 
                     src={Logo}
                     width={50}
