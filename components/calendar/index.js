@@ -144,7 +144,7 @@ export default function Calendar() {
 
     return (
         <>
-            <section className="h-[19rem] w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/40 px-10 py-7 mr-8 xl:mr-16">
+            <section className="h-[19rem] w-[36rem] bg-gradient-to-tl from-blue-400 to-violet-300 rounded-3xl shadow-xl shadow-indigo-400/20 px-10 py-7 mr-8 xl:mr-16">
 
                 {/* month selector */}
                 <div className="flex justify-between items-center">

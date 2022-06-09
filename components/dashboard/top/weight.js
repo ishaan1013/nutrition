@@ -66,7 +66,7 @@ export default function Weight() {
 
     return (
         <>
-            <section className="h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/50 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
+            <section className="h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
                 <div className="flex justify-between">
                     <div>
                         <h1 className="text-slate-600 text-5xl mb-2 font-black">50%</h1>
