@@ -300,7 +300,16 @@ export default function Search() {
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Protein</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pProtein}%</p>
-                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
+                                {nutritionResults[foodIndex] === undefined ? null :
+                                    Math.round(
+                                        // ! below: nutrient per gram
+                                        nutritionResults[foodIndex].foods[0].nf_protein / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                        // ! below: multiplying by total weight of current measurement
+                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                    ) / 100
+                                } g
+                            </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
@@ -327,7 +336,16 @@ export default function Search() {
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Carbs</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pCarbs}%</p>
-                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
+                                {nutritionResults[foodIndex] === undefined ? null :
+                                    Math.round(
+                                        // ! below: nutrient per gram
+                                        nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                        // ! below: multiplying by total weight of current measurement
+                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                    ) / 100
+                                } g
+                            </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
@@ -354,7 +372,16 @@ export default function Search() {
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Fats</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pFats}%</p>
-                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">50g</p>
+                            <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
+                                {nutritionResults[foodIndex] === undefined ? null :
+                                    Math.round(
+                                        // ! below: nutrient per gram
+                                        nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                        // ! below: multiplying by total weight of current measurement
+                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                    ) / 100
+                                } g
+                            </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                                 <circle
                                 cx="34"
