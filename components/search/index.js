@@ -159,7 +159,7 @@ export default function Search() {
                         setPCarbs(Math.round(nutritionResults[index].foods[0].nf_total_carbohydrate / nutritionResults[index].foods[0].serving_weight_grams * 100))
                         setPFats(Math.round(nutritionResults[index].foods[0].nf_total_fat / nutritionResults[index].foods[0].serving_weight_grams * 100))
                     }
-
+                    setMeasureIndex(0)
 
                     // console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
                     // console.log("setFoodMeasures:")
@@ -245,11 +245,16 @@ export default function Search() {
                             <div className="flex flex-col items-end">
                                 <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
                                     {nutritionResults[foodIndex] === undefined ? null :
-                                    Math.round(nutritionResults[foodIndex].foods[0].nf_calories)
+                                    Math.round(
+                                        // ! below: calories per gram
+                                        nutritionResults[foodIndex].foods[0].nf_calories / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                        // ! below: multiplying by total weight of current measurement
+                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput )
+                                    )
+
                                     // JSON.stringify(nutritionResults[foodIndex].foods[0]) 
                                     // ! use above for full json
-                                    // todo record calories/weight for measurement changes
-                                    // todo pcf percentages (they don't change based on weight)
+
                                     }
                                 </h1>
                                 {/* <p className="text-slate-500/90 font-medium">cals</p> */}
@@ -276,7 +281,7 @@ export default function Search() {
                             />
                             <div className="flex flex-col items-center justify-center">
                                 <p>{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure}</p>
-                                <p className="mt-[-0.1rem] text-xs">{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight} g</p>
+                                <p className="mt-[-0.1rem] text-xs">{Math.round(foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * 100) / 100} g</p>
                             </div>
                             <FaChevronRight
                             className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-4 rounded-full"
@@ -287,7 +292,7 @@ export default function Search() {
 
                     <div className="mt-20 flex justify-center w-full">
                         <p className="absolute translate-x-[0.1rem] -translate-y-14 text-blue-500/[0.85] font-extrabold">
-                            Total Weight: {foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput} g
+                            Total Weight: {Math.round(foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput * 100) / 100} g
                         </p>
                     </div>
 
