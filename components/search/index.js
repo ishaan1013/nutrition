@@ -5,6 +5,10 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 import {MdSearch} from "react-icons/md"
 
+function mod(n, m) {
+    return ((n % m) + m) % m;
+}
+
 export default function Search() {
     const appContext = useAppContext()
 
@@ -21,6 +25,7 @@ export default function Search() {
     const [foodSelected, setFoodSelected] = useState(false)
     const [foodIndex, setFoodIndex] = useState(-1)
     const [foodMeasures, setFoodMeasures] = useState([])
+    const [measureIndex, setMeasureIndex] = useState(0)
     const [pProtein, setPProtein] = useState(0)
     const [pCarbs, setPCarbs] = useState(0)
     const [pFats, setPFats] = useState(0)
@@ -267,17 +272,26 @@ export default function Search() {
                         >
                             <FaChevronLeft
                             className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-4 rounded-full"
+                            onClick={() => setMeasureIndex(measureIndex-1)}
                             />
                             <div className="flex flex-col items-center justify-center">
-                                <p>{foodMeasures[0] === undefined ? null : foodMeasures[0].measure}</p>
-                                <p className="mt-[-0.1rem] text-xs">{foodMeasures[0] === undefined ? null : foodMeasures[0].serving_weight} g</p>
+                                <p>{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure}</p>
+                                <p className="mt-[-0.1rem] text-xs">{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight} g</p>
                             </div>
                             <FaChevronRight
                             className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-4 rounded-full"
+                            onClick={() => setMeasureIndex(measureIndex+1)}
                             />
                         </div>
                     </div>
-                    <div className="w-full flex justify-evenly mt-16">
+
+                    <div className="mt-20 flex justify-center w-full">
+                        <p className="absolute translate-x-[0.1rem] -translate-y-14 text-blue-500/[0.85] font-extrabold">
+                            Total Weight: {foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput} g
+                        </p>
+                    </div>
+
+                    <div className="w-full flex justify-evenly mt-4">
                         <div className="relative my-1 w-[68px] h-[68px] flex items-center justify-center">
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Protein</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pProtein}%</p>
