@@ -293,6 +293,8 @@ export default function Search(props) {
                         </div>
                     </div>
 
+                    <div className="w-full border-slate-500 border-t-2 mt-6" />
+
                     <div className="mt-20 flex justify-center w-full">
                         <p className="absolute translate-x-[0.1rem] -translate-y-14 text-blue-500/[0.85] font-extrabold">
                             Total Weight: {Math.round(foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput * 100) / 100} g
@@ -410,9 +412,11 @@ export default function Search(props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-center">
+                    <div className="w-full border-slate-500 border-t-2 mt-16" />
+
+                    <div className="flex justify-center mt-8">
                         <div
-                        className="rounded-lg select-none px-3 py-2 mt-16 border-slate-300 border-2 text-slate-600 font-medium flex items-center justify-center"
+                        className="rounded-lg select-none px-3 py-2 border-slate-300 border-2 text-slate-600 font-medium flex items-center justify-center"
                         >
                             <FaChevronLeft
                             className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-4 rounded-full"
@@ -441,7 +445,19 @@ export default function Search(props) {
                             Math.round(
                                 nutritionResults[foodIndex].foods[0].nf_calories / nutritionResults[foodIndex].foods[0].serving_weight_grams
                                 * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput )
-                            )
+                            ),
+                            Math.round(
+                                nutritionResults[foodIndex].foods[0].nf_protein / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                            ) / 100,
+                            Math.round(
+                                nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                            ) / 100,
+                            Math.round(
+                                nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                            ) / 100
                         )
                         props.setIsSearching(false)
                     }}
