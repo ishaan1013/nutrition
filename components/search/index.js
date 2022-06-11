@@ -323,7 +323,7 @@ export default function Search(props) {
                                 strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 strokeDasharray="175"
-                                strokeDashoffset="60"
+                                strokeDashoffset={(1 - pProtein / 100) * 175}
                                 />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
@@ -359,7 +359,7 @@ export default function Search(props) {
                                 strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 strokeDasharray="175"
-                                strokeDashoffset="60"
+                                strokeDashoffset={(1 - pCarbs / 100) * 175}
                                 />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
@@ -395,7 +395,7 @@ export default function Search(props) {
                                 strokeLinecap="round"
                                 className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
                                 strokeDasharray="175"
-                                strokeDashoffset="60"
+                                strokeDashoffset={(1 - pFats / 100) * 175}
                                 />
                             </svg>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
