@@ -57,9 +57,6 @@ export default function FoodItem(props) {
                 foodList.push(val)
                 cals[index] = val.calories
                 index += 1
-                console.log("val.calories: "+val.calories)
-                console.log("key: "+ key)
-                console.log("cals: "+ cals)
             })
 
             props.setTotalCal(cals.reduce((partialSum, a) => partialSum + a, 0))

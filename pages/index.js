@@ -17,10 +17,12 @@ export default function Home() {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid
+      const isAnonymous = user.isAnonymous
       setUserIn(true)
       console.log(user)
       console.log(user.uid)
       appContext.setGlobalUid(uid)
+      appContext.setGlobalAnon(isAnonymous)
     } else {
       setUserIn(false)
       appContext.setGlobalUid("")
