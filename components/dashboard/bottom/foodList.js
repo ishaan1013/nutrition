@@ -10,7 +10,7 @@ export default function FoodList(props) {
     
     return (
         <>
-            <section className="w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 relative overflow-hidden mr-8">
+            <section className="w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 relative overflow-hidden mr-8 self-start">
                 <div className="flex justify-between items-center">
                     <h1 className="text-slate-600 text-2xl mb-2 font-black">{props.mealName}</h1>
                     <div className="flex flex-col items-end">
@@ -22,7 +22,7 @@ export default function FoodList(props) {
                 <FoodItem 
                 userId={appContext.sharedState.globalUid} 
                 date={date} 
-                meal="breakfast" 
+                meal={props.mealName}
                 totalCal={totalCal}
                 setTotalCal={setTotalCal}
                 />

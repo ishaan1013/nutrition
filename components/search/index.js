@@ -27,6 +27,8 @@ export default function Search(props) {
     const [foodIndex, setFoodIndex] = useState(-1)
     const [foodMeasures, setFoodMeasures] = useState([])
     const [measureIndex, setMeasureIndex] = useState(0)
+    const [mealIndex, setMealIndex] = useState(0)
+    const meals = ["Breakfast", "Lunch", "Dinner", "Other"]
     const [pProtein, setPProtein] = useState(0)
     const [pCarbs, setPCarbs] = useState(0)
     const [pFats, setPFats] = useState(0)
@@ -281,7 +283,7 @@ export default function Search(props) {
                             onClick={() => setMeasureIndex(measureIndex-1)}
                             />
                             <div className="flex flex-col items-center justify-center">
-                                <p>{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure}</p>
+                                <p className="font-bold">{foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure}</p>
                                 <p className="mt-[-0.1rem] text-xs">{Math.round(foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * 100) / 100} g</p>
                             </div>
                             <FaChevronRight
@@ -408,12 +410,31 @@ export default function Search(props) {
                         </div>
                     </div>
 
+                    <div className="flex justify-center">
+                        <div
+                        className="rounded-lg select-none px-3 py-2 mt-16 border-slate-300 border-2 text-slate-600 font-medium flex items-center justify-center"
+                        >
+                            <FaChevronLeft
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] mr-4 rounded-full"
+                            onClick={() => setMealIndex(mealIndex-1)}
+                            />
+                            <div className="flex flex-col items-center justify-center">
+                                <p className="mb-[-0.1rem] text-xs">Meal</p>
+                                <p className="font-bold">{meals[mod(mealIndex, 4)]}</p>
+                            </div>
+                            <FaChevronRight
+                            className="text-slate-600 cursor-pointer hover:bg-slate-600/10 p-[0.25rem] h-[1.4rem] w-[1.4rem] ml-4 rounded-full"
+                            onClick={() => setMealIndex(mealIndex+1)}
+                            />
+                        </div>
+                    </div>
+
                     <button
                     onClick={() => {
                         addFoodDb(
                             appContext.sharedState.globalUid, 
                             date, 
-                            "breakfast", 
+                            meals[mod(mealIndex, 4)], 
                             searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, '$1'), 
                             qtyInput, 
                             foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure,
@@ -424,7 +445,7 @@ export default function Search(props) {
                         )
                         props.setIsSearching(false)
                     }}
-                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-[4.25rem] ease-in-out duration-100 font-medium"
+                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-6 ease-in-out duration-100 font-medium"
                     >Add Food</button>
                 </div>
             )
