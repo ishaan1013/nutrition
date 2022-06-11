@@ -75,11 +75,9 @@ export default function Sidebar(props) {
         <>
             <nav className="z-50 select-none h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
                 <ul>
-                    <div className="relative flex items-center">
-                        <li id="customHover1" className="cursor-pointer">
-                            <Link href="/about" passHref>
-                                <Image src={Logo} width={36} height={36}/>
-                            </Link>
+                    <div className="relative flex items-center pointer-events-none">
+                        <li>
+                            <Image src={Logo} width={36} height={36}/>
                         </li>
                         <p className="left-[3.2rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 mb-2 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling1">
                             About
