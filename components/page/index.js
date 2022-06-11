@@ -13,7 +13,7 @@ export default function Page() {
             { isSearching &&
                 <>
                     <section className="z-40 absolute h-screen w-screen flex items-center justify-center">
-                        <Search />
+                        <Search setIsSearching={setIsSearching} />
                     </section>
                     
                     <div className="z-30 backdrop-blur-md h-screen w-screen absolute"/>

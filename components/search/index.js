@@ -9,8 +9,9 @@ function mod(n, m) {
     return ((n % m) + m) % m;
 }
 
-export default function Search() {
+export default function Search(props) {
     const appContext = useAppContext()
+    const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
 
     const [qtyInput, setQtyInput] = useState("")
     const onChangeQty = (event) => {
@@ -125,7 +126,7 @@ export default function Search() {
         if (searchResults.length > 0) {
             console.log("search results: " + JSON.stringify(searchResults[0]))
 
-            const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
+            // const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
 
             const results = searchResults.map((result, index) => 
                 <div 
@@ -151,14 +152,14 @@ export default function Search() {
                         }, 
                         ...nutritionResults[index].foods[0].alt_measures
                     ])
-                    {foodMeasures[0] === undefined ? null : foodMeasures[0].measure}
-                    if (foodMeasures[0] !== undefined) {
-                        setQtyInput(nutritionResults[index].foods[0].alt_measures[0].qty)
 
-                        setPProtein(Math.round(nutritionResults[index].foods[0].nf_protein / nutritionResults[index].foods[0].serving_weight_grams * 100))
-                        setPCarbs(Math.round(nutritionResults[index].foods[0].nf_total_carbohydrate / nutritionResults[index].foods[0].serving_weight_grams * 100))
-                        setPFats(Math.round(nutritionResults[index].foods[0].nf_total_fat / nutritionResults[index].foods[0].serving_weight_grams * 100))
+                    if (nutritionResults[index].foods[0].alt_measures[0] !== undefined) {
+                        setQtyInput(nutritionResults[index].foods[0].alt_measures[0].qty)
                     }
+
+                    setPProtein(Math.round(nutritionResults[index].foods[0].nf_protein / nutritionResults[index].foods[0].serving_weight_grams * 100))
+                    setPCarbs(Math.round(nutritionResults[index].foods[0].nf_total_carbohydrate / nutritionResults[index].foods[0].serving_weight_grams * 100))
+                    setPFats(Math.round(nutritionResults[index].foods[0].nf_total_fat / nutritionResults[index].foods[0].serving_weight_grams * 100))
                     setMeasureIndex(0)
 
                     // console.log("nutritionResults[index].foods[0].alt_measures: "+nutritionResults[index].foods[0].alt_measures)
@@ -230,8 +231,8 @@ export default function Search() {
                     <div className="w-full relative flex justify-center mb-10">
                         <div className="absolute top-2">
                             <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black capitalize">
-                                {searchResults[foodIndex] === undefined ? null :
-                                JSON.stringify(searchResults[foodIndex].food_name).replace(/^"(.+(?="$))"$/, '$1')
+                                {
+                                searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, '$1')
                                 }
                             </h1>
                         </div>
@@ -244,7 +245,7 @@ export default function Search() {
                             />
                             <div className="flex flex-col items-end">
                                 <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black">
-                                    {nutritionResults[foodIndex] === undefined ? null :
+                                    {
                                     Math.round(
                                         // ! below: calories per gram
                                         nutritionResults[foodIndex].foods[0].nf_calories / nutritionResults[foodIndex].foods[0].serving_weight_grams
@@ -301,13 +302,13 @@ export default function Search() {
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Protein</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pProtein}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
-                                {nutritionResults[foodIndex] === undefined ? null :
-                                    Math.round(
-                                        // ! below: nutrient per gram
-                                        nutritionResults[foodIndex].foods[0].nf_protein / nutritionResults[foodIndex].foods[0].serving_weight_grams
-                                        // ! below: multiplying by total weight of current measurement
-                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
-                                    ) / 100
+                                {
+                                Math.round(
+                                    // ! below: nutrient per gram
+                                    nutritionResults[foodIndex].foods[0].nf_protein / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                    // ! below: multiplying by total weight of current measurement
+                                    * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                ) / 100
                                 } g
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
@@ -337,13 +338,13 @@ export default function Search() {
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Carbs</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pCarbs}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
-                                {nutritionResults[foodIndex] === undefined ? null :
-                                    Math.round(
-                                        // ! below: nutrient per gram
-                                        nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
-                                        // ! below: multiplying by total weight of current measurement
-                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
-                                    ) / 100
+                                {
+                                Math.round(
+                                    // ! below: nutrient per gram
+                                    nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                    // ! below: multiplying by total weight of current measurement
+                                    * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                ) / 100
                                 } g
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
@@ -373,13 +374,13 @@ export default function Search() {
                             <p className="absolute translate-x-[0.1rem] -translate-y-14 text-slate-600 font-semibold">Fats</p>
                             <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{pFats}%</p>
                             <p className="absolute translate-x-[0.1rem] translate-y-14 text-slate-600 font-semibold">
-                                {nutritionResults[foodIndex] === undefined ? null :
-                                    Math.round(
-                                        // ! below: nutrient per gram
-                                        nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
-                                        // ! below: multiplying by total weight of current measurement
-                                        * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
-                                    ) / 100
+                                {
+                                Math.round(
+                                    // ! below: nutrient per gram
+                                    nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                    // ! below: multiplying by total weight of current measurement
+                                    * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
+                                ) / 100
                                 } g
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
@@ -408,6 +409,21 @@ export default function Search() {
                     </div>
 
                     <button
+                    onClick={() => {
+                        addFoodDb(
+                            appContext.sharedState.globalUid, 
+                            date, 
+                            "breakfast", 
+                            searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, '$1'), 
+                            qtyInput, 
+                            foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure,
+                            Math.round(
+                                nutritionResults[foodIndex].foods[0].nf_calories / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput )
+                            )
+                        )
+                        props.setIsSearching(false)
+                    }}
                     className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-[4.25rem] ease-in-out duration-100 font-medium"
                     >Add Food</button>
                 </div>
