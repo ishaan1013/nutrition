@@ -1,6 +1,6 @@
 import { app } from "../../../global/db/firebase"
 import firebase from "firebase/app"
-import { getDatabase, ref, get, child, onValue} from "firebase/database"
+import { getDatabase, ref, get, child, onValue, remove} from "firebase/database"
 import { useState, useEffect } from "react"
 
 import { IoMdTrash } from "react-icons/io"
@@ -79,7 +79,10 @@ export default function FoodItem(props) {
                         <h4 className="text-slate-600 text-sm">cals</h4>
                     </div>
                     <IoMdTrash 
-                    
+                    onClick={() => {
+                        remove(ref(db, (props.userId + "/" + props.date + "/" + props.meal + "/" + result.foodName)))
+                        props.setTotalCal(props.totalCal - result.calories)
+                    }}
                     className="w-8 h-8 p-1 text-red-500 cursor-pointer rounded-full hover:border-[1px] hover:bg-red-100 hover:border-red-500 hidden group-hover:block"
                     />
                 </div>
