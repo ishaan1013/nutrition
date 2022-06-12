@@ -83,7 +83,7 @@ export default function FoodItem(props) {
                         remove(ref(db, (props.userId + "/" + props.date + "/" + props.meal + "/" + result.foodName)))
                         props.setTotalCal(props.totalCal - result.calories)
                     }}
-                    className="w-8 h-8 p-1 text-red-500 cursor-pointer rounded-full hover:border-[1px] hover:bg-red-100 hover:border-red-500 hidden group-hover:block"
+                    className="w-8 h-8 p-1 text-red-500/90 hover:text-red-500 cursor-pointer rounded-full hover:bg-red-200/90 border-[1px] border-slate-400 hover:border-red-500 hidden group-hover:block"
                     />
                 </div>
             )
