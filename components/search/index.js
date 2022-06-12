@@ -6,7 +6,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import {MdSearch} from "react-icons/md"
 
 function mod(n, m) {
-    return ((n % m) + m) % m;
+    return ((n % m) + m) % m
 }
 
 export default function Search(props) {
@@ -234,7 +234,7 @@ export default function Search(props) {
                         <div className="absolute top-2">
                             <h1 className="text-slate-600 text-2xl mb-[-0.4rem] font-black capitalize">
                                 {
-                                searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, '$1')
+                                searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, "$1")
                                 }
                             </h1>
                         </div>
@@ -439,7 +439,7 @@ export default function Search(props) {
                             appContext.sharedState.globalUid, 
                             date, 
                             meals[mod(mealIndex, 4)], 
-                            searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, '$1'), 
+                            searchResults[foodIndex].food_name.replace(/^"(.+(?="$))"$/, "$1"), 
                             qtyInput, 
                             foodMeasures[mod(measureIndex, foodMeasures.length)] === undefined ? null : foodMeasures[mod(measureIndex, foodMeasures.length)].measure,
                             Math.round(
@@ -498,7 +498,7 @@ export default function Search(props) {
                 }
 
                 <div className="flex items-center mt-2 select-none">
-                    <p className="font-medium text-xs text-slate-400">also search with &nbsp;</p>
+                    <p className="font-medium text-xs text-slate-400">also search with &nbsp</p>
                     <div className="font-bold font-mono text-xs border-[1.5px] border-slate-500 bg-slate-100 text-slate-500 px-1 py-[0.12rem] rounded-md">enter</div>
                 </div>
 

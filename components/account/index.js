@@ -13,6 +13,7 @@ export default function Account() {
             <section className="h-full w-full flex items-center justify-center">
                 <div className="w-[30rem] bg-white/[0.55] rounded-3xl shadow-2xl shadow-blue-200/40 p-10 ml-5 relative overflow-hidden backdrop-blur-md flex items-center justify-center flex-col">
                     <Image 
+                    alt="Logo"
                     src={Logo}
                     width={50}
                     height={50}

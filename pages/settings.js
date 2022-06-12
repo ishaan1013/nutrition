@@ -43,7 +43,7 @@ export default function Settings() {
                     <div className="p-4 2xl:w-1/4 xl:w-1/3 lg:w-2/5 md:w-3/5 rounded-xl border-2 border-red-500">
                         <MdWarning className="text-red-500 mb-2 w-6 h-6" />
                         <h4 className="leading-[1.75rem] font-semibold text-red-500">
-                            <span className="font-extrabold">Warning:</span> You're using a temporary account. Your account data will not be saved. If you want to save your data, log out and create an account.
+                            <span className="font-extrabold">Warning:</span> You&apos;re using a temporary account. Your account data will not be saved. If you want to save your data, log out and create an account.
                         </h4>
                     </div>
                 </div>

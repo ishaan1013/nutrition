@@ -77,7 +77,7 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center pointer-events-none">
                         <li>
-                            <Image src={Logo} width={36} height={36}/>
+                            <Image alt="Logo" src={Logo} width={36} height={36}/>
                         </li>
                         <p className="left-[3.2rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 mb-2 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling1">
                             About
