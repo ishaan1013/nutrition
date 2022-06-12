@@ -3,6 +3,8 @@ import firebase from "firebase/app"
 import { getDatabase, ref, get, child, onValue} from "firebase/database"
 import { useState, useEffect } from "react"
 
+import { IoMdTrash } from "react-icons/io"
+
 export default function FoodItem(props) {
     const [foods, setFoods] = useState()
     const db = getDatabase()
@@ -63,19 +65,23 @@ export default function FoodItem(props) {
 
             const results = foodList.map((result, index) => 
                 <div 
-                className="flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
+                className="group flex justify-between items-center bg-transparent border-2 border-slate-300 hover:border-blue-300 hover:bg-blue-50 duration-300 ease-in-out cursor-pointer rounded-lg p-4 my-4 select-none"
                 key={index}
                 >
                     <div className="flex flex-col">
                         <h1 className="text-slate-600">{result.foodName}</h1>
                         <h4 className="text-slate-600 text-sm">{result.qty} {result.foodName}</h4>
                     </div>
-                    <div className="flex flex-col items-end">
+                    <div className="flex flex-col items-end group-hover:hidden">
                         <h1 className="mb-[-0.3rem] text-slate-600">
                             {result.calories}
                         </h1>
                         <h4 className="text-slate-600 text-sm">cals</h4>
                     </div>
+                    <IoMdTrash 
+                    
+                    className="w-8 h-8 p-1 text-red-500 cursor-pointer rounded-full hover:border-[1px] hover:bg-red-100 hover:border-red-500 hidden group-hover:block"
+                    />
                 </div>
             )
 
