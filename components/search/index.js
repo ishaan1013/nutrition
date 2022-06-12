@@ -155,9 +155,7 @@ export default function Search(props) {
                         ...nutritionResults[index].foods[0].alt_measures
                     ])
 
-                    if (nutritionResults[index].foods[0].alt_measures[0] !== undefined) {
-                        setQtyInput(nutritionResults[index].foods[0].alt_measures[0].qty)
-                    }
+                    setQtyInput(nutritionResults[index].foods[0].serving_qty)
 
                     setPProtein(Math.round(nutritionResults[index].foods[0].nf_protein / nutritionResults[index].foods[0].serving_weight_grams * 100))
                     setPCarbs(Math.round(nutritionResults[index].foods[0].nf_total_carbohydrate / nutritionResults[index].foods[0].serving_weight_grams * 100))
