@@ -14,7 +14,7 @@ export default function FoodItem(props) {
             console.log(data)  
             setFoods(data)
         })
-    }, [])
+    }, [props.date])
 
     // useEffect(() => {
     //     console.log("getFoods")

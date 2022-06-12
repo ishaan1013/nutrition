@@ -3,8 +3,7 @@ import { useAppContext } from "../../global/state"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminateCheckBox } from "react-icons/md"
 
-
-export default function Calendar() {
+export default function Calendar(props) {
     const appContext = useAppContext()
     const [day, setDay] = useState(appContext.sharedState.day)
     const [monthView, setMonthView] = useState(appContext.sharedState.month < 7)
@@ -91,6 +90,7 @@ export default function Calendar() {
     function CalendarDays() {
         function changeDay(x) {
             setDay(x)
+            props.setUpdateFoods(true)
             appContext.changeMonthContext(monthPreview)
             appContext.changeYearContext(yearPreview)
             appContext.changeDayContext(x)
