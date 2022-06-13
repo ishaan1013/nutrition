@@ -30,7 +30,7 @@ export default function Sidebar(props) {
                 href="/"
                 passHref
                 >
-                    <MdSearch className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                 </Link>
             )   
         } else {
@@ -38,7 +38,7 @@ export default function Sidebar(props) {
                 <div
                 onClick={() => {props.setIsSearching(!props.isSearching)}}
                 >
-                    <MdSearch className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                 </div>
             )
         }
@@ -52,7 +52,7 @@ export default function Sidebar(props) {
                 passHref
                 >
                     <MdOutlineDashboard 
-                    className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
+                    className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
                     />
                 </Link>
             )   
@@ -64,7 +64,7 @@ export default function Sidebar(props) {
                 >
                     <MdOutlineDashboard 
                     onClick={() => {props.setIsSearching(false)}}
-                    className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
+                    className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
                     />
                 </Link>
             )
@@ -73,11 +73,13 @@ export default function Sidebar(props) {
 
     return (
         <>
-            <nav className="z-50 select-none h-screen w-24 flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
+            <nav className="z-50 select-none h-screen w-[4.8rem] xl:w-24 flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
                 <ul>
                     <div className="relative flex items-center pointer-events-none">
                         <li>
-                            <Image alt="Logo" src={Logo} width={36} height={36}/>
+                            <div className="w-8 h-8 xl:w-9 xl:h-9">
+                                <Image alt="Logo" src={Logo}/>
+                            </div>
                         </li>
                         <p className="left-[3.2rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 mb-2 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling1">
                             About
@@ -104,7 +106,7 @@ export default function Sidebar(props) {
                     <div className="relative flex items-center">
                         <li id="customHover4">
                             <Link href="/settings" passHref>
-                                <MdOutlineSettings className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                                <MdOutlineSettings className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                             </Link>
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling4">
@@ -118,7 +120,7 @@ export default function Sidebar(props) {
                         onClick={() => signOutHandler()}
                         id="customHover5"
                         >
-                            <MdOutlineLogout className="w-12 h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                            <MdOutlineLogout className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling5">
                             Logout

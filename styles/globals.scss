@@ -12,6 +12,18 @@ body {
   overflow-x: hidden;
 }
 
+.main-zoom {
+  @media screen and (max-width: 1536px) {
+    zoom: 95%
+  }
+  @media screen and (max-width: 1280px) {
+    zoom: 90%
+  }
+  @media screen and (max-width: 1024px) {
+    zoom: 85%
+  }
+}
+
 html {
   background-color: #f5f6f7;
 }
