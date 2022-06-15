@@ -6,6 +6,9 @@ import FoodItem from "./foodItem"
 
 export default function FoodList(props) {
     const [totalCal, setTotalCal] = useState(0)
+    const [totalProtein, setTotalProtein] = useState(0)
+    const [totalCarbs, setTotalCarbs] = useState(0)
+    const [totalFats, setTotalFats] = useState(0)
     const [, forceUpdate] = useReducer(x => x + 1, 0)
 
     const appContext = useAppContext()
@@ -16,8 +19,18 @@ export default function FoodList(props) {
             forceUpdate()
             props.setUpdateFoods(false)
             setTotalCal(0)
+            setTotalProtein(0)
+            setTotalCarbs(0)
+            setTotalFats(0)
         }
     }, [props.updateFoods])
+
+    useEffect(() => {
+        props.setCalSum(totalCal)
+        props.setPSum(totalProtein)
+        props.setCSum(totalCarbs)
+        props.setFSum(totalFats)
+    }, [totalCal])
     
     return (
         <>
@@ -39,6 +52,9 @@ export default function FoodList(props) {
                 meal={props.mealName}
                 totalCal={totalCal}
                 setTotalCal={setTotalCal}
+                setTotalProtein={setTotalProtein}
+                setTotalCarbs={setTotalCarbs}
+                setTotalFats={setTotalFats}
                 />
         
             </section>

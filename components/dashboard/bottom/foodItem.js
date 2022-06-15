@@ -54,14 +54,23 @@ export default function FoodItem(props) {
         if (foods !== null && foods !== undefined) {
             const foodList = []
             const cals = []
+            const p = []
+            const c = []
+            const f = []
             var index = 0
             Object.entries(foods).forEach(([key, val]) => {
                 foodList.push(val)
                 cals[index] = val.calories
+                p[index] = val.protein
+                c[index] = val.carbs
+                f[index] = val.fat
                 index += 1
             })
 
             props.setTotalCal(cals.reduce((partialSum, a) => partialSum + a, 0))
+            props.setTotalProtein(p.reduce((partialSum, a) => partialSum + a, 0))
+            props.setTotalCarbs(c.reduce((partialSum, a) => partialSum + a, 0))
+            props.setTotalFats(f.reduce((partialSum, a) => partialSum + a, 0))
 
             const results = foodList.map((result, index) => 
                 <div 
@@ -70,7 +79,7 @@ export default function FoodItem(props) {
                 >
                     <div className="flex flex-col">
                         <h1 className="text-slate-600">{result.foodName}</h1>
-                        <h4 className="text-slate-600 text-sm">{result.qty} {result.foodName}</h4>
+                        <h4 className="text-slate-600 text-sm">{result.qty} {result.unit}</h4>
                     </div>
                     <div className="flex flex-col items-end group-hover:hidden">
                         <h1 className="mb-[-0.3rem] text-slate-600">

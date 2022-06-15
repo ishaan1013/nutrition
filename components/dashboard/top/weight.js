@@ -67,10 +67,10 @@ export default function Weight() {
 
     return (
         <>
-            <section className="cursor-not-allowed h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
+            <section className="select-none cursor-not-allowed h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
                 <div className="flex justify-between">
                     <div>
-                        <h1 className="text-slate-300 text-5xl mb-2 font-black">Weight</h1>
+                        <h1 className="text-slate-300 text-3xl mb-1 font-black">Weight</h1>
                         <p className="text-slate-300 font-medium">Coming soon!</p>
                         {/* <h1 className="text-slate-600 text-5xl mb-2 font-black">Weight</h1>
                         <p className="text-slate-500/90 font-medium">Coming soon!</p> */}

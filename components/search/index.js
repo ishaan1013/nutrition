@@ -449,11 +449,11 @@ export default function Search(props) {
                                 * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
                             ) / 100,
                             Math.round(
-                                nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
                                 * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
                             ) / 100,
                             Math.round(
-                                nutritionResults[foodIndex].foods[0].nf_total_carbohydrate / nutritionResults[foodIndex].foods[0].serving_weight_grams
+                                nutritionResults[foodIndex].foods[0].nf_total_fat / nutritionResults[foodIndex].foods[0].serving_weight_grams
                                 * ( foodMeasures[mod(measureIndex, foodMeasures.length)].serving_weight * qtyInput ) * 100
                             ) / 100
                         )
