@@ -195,15 +195,16 @@ export default function Calendar(props) {
                         <ul>
                             <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
-                                {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year}
+                                {/* {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year} */}
+                                Calories Goal
                             </li>
                             <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
-                                thing 2
+                                Macros Goal
                             </li>
                             <li className="flex items-center text-white font-medium ">
                                 <Checkbox/>
-                                thing 3
+                                Weight Goal
                             </li>
                         </ul>
                     </div>

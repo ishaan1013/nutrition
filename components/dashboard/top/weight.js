@@ -52,7 +52,8 @@ export default function Weight() {
         labels: labels,
         datasets: [{
             data: [150, 145, 148, 140, 155],
-            borderColor: "#3b82f6d9",
+            // borderColor: "#3b82f6d9",
+            borderColor: "#77a4ed77",
             tension: 0.3,
             borderWidth: 4,
             pointBackgroundColor: "rgba(0, 0, 0, 0)",
@@ -66,14 +67,19 @@ export default function Weight() {
 
     return (
         <>
-            <section className="h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
+            <section className="cursor-not-allowed h-[19rem] w-80 bg-white rounded-3xl shadow-xl shadow-gray-200/10 px-10 py-7 mr-8 xl:mr-16 relative overflow-hidden">
                 <div className="flex justify-between">
                     <div>
-                        <h1 className="text-slate-600 text-5xl mb-2 font-black">50%</h1>
-                        <p className="text-slate-500/90 font-medium">text text progress</p>
+                        <h1 className="text-slate-300 text-5xl mb-2 font-black">Weight</h1>
+                        <p className="text-slate-300 font-medium">Coming soon!</p>
+                        {/* <h1 className="text-slate-600 text-5xl mb-2 font-black">Weight</h1>
+                        <p className="text-slate-500/90 font-medium">Coming soon!</p> */}
                     </div>
-                    <FaChevronRight
+                    {/* <FaChevronRight
                     className="text-slate-600 cursor-pointer hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"
+                    /> */}
+                    <FaChevronRight
+                    className="text-slate-300 hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"
                     />
                 </div>
                 <Line className="!w-[102%] !h-[56%] absolute bottom-[-4px] left-[-3px]" options={options} data={data} />

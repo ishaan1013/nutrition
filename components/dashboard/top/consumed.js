@@ -2,67 +2,7 @@ import { useState } from "react"
 import { useAppContext } from "../../../global/state"
 import { FaChevronRight } from "react-icons/fa"
 
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-  } from "chart.js"
-  import { Line } from "react-chartjs-2"
-
 export default function Consumed() {
-    
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        LineElement,
-        Title,
-        Tooltip,
-        Legend,
-        Filler
-    )
-
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false,
-            },
-        },
-        scales: {
-            x: {
-                display: false,
-            },
-            y: {
-                display: false,
-                suggestedMin: 130,
-                suggestedMax: 150,
-            }
-        }
-    }
-      
-    const labels = ["", "", "", "", ""]
-    const data = {
-        labels: labels,
-        datasets: [{
-            data: [150, 145, 148, 140, 155],
-            borderColor: "#3b82f6d9",
-            tension: 0.3,
-            borderWidth: 4,
-            pointBackgroundColor: "rgba(0, 0, 0, 0)",
-            pointRadius: 0,
-            fill: {
-                target: "origin",
-                above: "#dce7f2",
-            }
-        }]
-    }
 
     return (
         <>
@@ -76,7 +16,96 @@ export default function Consumed() {
                     className="text-slate-600 cursor-pointer hover:bg-slate-100/60 p-[0.3rem] h-[1.8rem] w-[1.8rem] rounded-full"
                     />
                 </div>
-                <Line className="!w-[102%] !h-[56%] absolute bottom-[-4px] left-[-3px]" options={options} data={data} />
+
+                <div className="relative my-1 w-[68px] h-[68px] top-16 flex items-center justify-center">
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Protein</p>
+                    <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">50%</p>
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
+                        50g
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="50"
+                        />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-slate-300 stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="0"
+                        />
+                    </svg>
+                </div>
+
+                <div className="relative my-1 w-[68px] h-[68px] left-20 -top-10 flex items-center justify-center">
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Carbs</p>
+                    <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">50%</p>
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
+                        50g
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="50"
+                        />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-slate-300 stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="0"
+                        />
+                    </svg>
+                </div>
+                
+                <div className="relative my-1 w-[68px] h-[68px] left-40 -top-20 flex items-center justify-center">
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Fats</p>
+                    <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">50%</p>
+                    <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
+                        50g
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-blue-500/[0.85] stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="50"
+                        />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="absolute rotate-[270deg] w-[68px] h-[68px]">
+                        <circle
+                        cx="34"
+                        cy="34"
+                        r="28"
+                        strokeLinecap="round"
+                        className="stroke-slate-300 stroke-[12] fill-transparent"
+                        strokeDasharray="175"
+                        strokeDashoffset="0"
+                        />
+                    </svg>
+                </div>
             </section>
         </>
     )
