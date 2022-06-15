@@ -3,6 +3,7 @@ import firebase from "firebase/app"
 
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 import {useRouter} from "next/router"
 import { useAppContext } from "../../global/state"
 
@@ -14,6 +15,7 @@ export default function Sidebar(props) {
 
     const auth = getAuth()
     const appContext = useAppContext()
+    const [isOpened , setIsOpened] = useState(false)
 
     function signOutHandler() {
         signOut(auth).then(() => {
@@ -73,19 +75,18 @@ export default function Sidebar(props) {
         }
     }
 
-    return (
-        <>
-            <nav className="z-50 select-none h-screen w-[4.8rem] xl:w-24 flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
+    function SidebarContent() {
+        return (
+            <>
                 <ul>
                     <div className="relative flex items-center pointer-events-none">
                         <li>
-                            <div className="w-8 h-8 xl:w-9 xl:h-9">
+                            <div 
+                            className="w-8 h-8 xl:w-9 xl:h-9"
+                            >
                                 <Image alt="Logo" src={Logo}/>
                             </div>
                         </li>
-                        <p className="left-[3.2rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 mb-2 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling1">
-                            About
-                        </p>
                     </div>
                 </ul>
                 <ul>
@@ -133,6 +134,37 @@ export default function Sidebar(props) {
                         </p>
                     </div>
                 </ul>
+            </>
+        )
+    }
+
+    return (
+        <>
+            {!isOpened && 
+            <div className="z-50 md:hidden fixed">
+                <div 
+                onClick={() => setIsOpened(true)}
+                className="cursor-pointer p-2 bg-blue-300 flex absolute top-4 left-4 w-14 h-14 xl:w-9 xl:h-9 rounded-2xl shadow-lg shadow-blue-200"
+                >
+                    <Image alt="Logo" src={Logo}/>
+                </div>
+            </div>
+            }
+            
+            {isOpened && 
+            <>
+                <nav className="flex z-[51] select-none h-screen w-30 md:hidden flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
+                    <SidebarContent />
+                </nav>
+                <div 
+                onClick={() => {setIsOpened(false)}} 
+                className="md:hidden absolute w-full h-screen z-50" 
+                />
+            </>
+            }
+
+            <nav className="hidden z-50 select-none h-screen w-[4.8rem] xl:w-24 md:flex flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
+                <SidebarContent />
             </nav>
         </>
         
