@@ -4,6 +4,7 @@ import firebase from "firebase/app"
 import Image from "next/image"
 import Link from "next/link"
 import {useRouter} from "next/router"
+import { useAppContext } from "../../global/state"
 
 import Logo from "../../assets/logo.png"
 import { getAuth, signOut } from "firebase/auth"
@@ -12,6 +13,7 @@ import { MdOutlineDashboard, MdSearch, MdOutlineSettings, MdOutlineLogout } from
 export default function Sidebar(props) {
 
     const auth = getAuth()
+    const appContext = useAppContext()
 
     function signOutHandler() {
         signOut(auth).then(() => {
@@ -117,7 +119,11 @@ export default function Sidebar(props) {
                 <ul>
                     <div className="relative flex items-center">
                         <li 
-                        onClick={() => signOutHandler()}
+                        onClick={() => {
+                            signOutHandler()
+                            appContext.setGlobalUid("")
+                            router.push("/")
+                        }}
                         id="customHover5"
                         >
                             <MdOutlineLogout className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
