@@ -17,13 +17,13 @@ export default function Consumed(props) {
         if (totalCalSum === undefined) {
             setTotalCalSum(0)
         }
-        if (totalPSum === undefined) {
+        if (totalPSum === undefined || Number.isNaN(totalPSum)) {
             setTotalPSum(0)
         }
-        if (totalCSum === undefined) {
+        if (totalCSum === undefined || Number.isNaN(totalCSum)) {
             setTotalCSum(0)
         }
-        if (totalFSum === undefined) {
+        if (totalFSum === undefined || Number.isNaN(totalFSum)) {
             setTotalFSum(0)
         }
         
