@@ -23,7 +23,6 @@ export default function Home() {
       console.log(user)
       console.log("user.uid: "+user.uid)
       appContext.setGlobalUid(uid)
-      console.log("globalUid: "+appContext.sharedState.globalUid)
       appContext.setGlobalAnon(isAnonymous)
     } else {
       setUserIn(false)

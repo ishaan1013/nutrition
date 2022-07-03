@@ -30,7 +30,7 @@ export default function Dashboard() {
     const [otherF, setOtherF] = useState(0)
 
     return (
-        <main className="w-screen h-screen p-10 main-zoom">
+        <main className="w-screen h-screen md:p-10 py-8 px-4 main-zoom">
             <div className="flex min-w-[1536px] xl:ml-6 ml-3 mb-16">
                 <Calendar setUpdateFoods={setUpdateFoods}/> 
                 <Consumed 

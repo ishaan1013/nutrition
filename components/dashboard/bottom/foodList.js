@@ -27,6 +27,7 @@ export default function FoodList(props) {
 
     useEffect(() => {
         props.setCalSum(totalCal)
+        console.log("setting nutrients")
         props.setPSum(totalProtein)
         props.setCSum(totalCarbs)
         props.setFSum(totalFats)
@@ -52,8 +53,11 @@ export default function FoodList(props) {
                 meal={props.mealName}
                 totalCal={totalCal}
                 setTotalCal={setTotalCal}
+                totalProtein={totalProtein}
                 setTotalProtein={setTotalProtein}
+                totalCarbs={totalCarbs}
                 setTotalCarbs={setTotalCarbs}
+                totalFats={totalFats}
                 setTotalFats={setTotalFats}
                 />
         

@@ -43,8 +43,6 @@ export default function Search(props) {
     }
 
     const foodSearch = () => {
-        console.log("searching...")
-        console.log("search: " + search)
         setSearchResults([])
         setNutritionResults([])
         if (search !== "") {

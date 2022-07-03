@@ -9,23 +9,32 @@ export default function Consumed(props) {
     const [totalFSum, setTotalFSum] = useState(0)
 
     useEffect(() => {
-        setTotalCalSum(props.breakfastCals + props.lunchCals + props.dinnerCals + props.otherCals)
-        setTotalPSum(props.breakfastP + props.lunchP + props.dinnerP + props.otherP)
-        setTotalCSum(props.breakfastC + props.lunchC + props.dinnerC + props.otherC)
-        setTotalFSum(props.breakfastF + props.lunchF + props.dinnerF + props.otherF)
+        setTotalCalSum(Math.round(parseFloat(props.breakfastCals + props.lunchCals + props.dinnerCals + props.otherCals)))
+        setTotalPSum(Math.round(parseFloat(props.breakfastP + props.lunchP + props.dinnerP + props.otherP)))
+        setTotalCSum(Math.round(parseFloat(props.breakfastC + props.lunchC + props.dinnerC + props.otherC)))
+        setTotalFSum(Math.round(parseFloat(props.breakfastF + props.lunchF + props.dinnerF + props.otherF)))
+        
+        // console.log("totalPSum: ", totalPSum)
+        // console.log("totalCSum: ", totalCSum)
+        // console.log("totalFSum: ", totalFSum)
 
         if (totalCalSum === undefined) {
             setTotalCalSum(0)
         }
-        if (totalPSum === undefined || Number.isNaN(totalPSum)) {
+        if (totalPSum === undefined) {
             setTotalPSum(0)
         }
-        if (totalCSum === undefined || Number.isNaN(totalCSum)) {
+        if (totalCSum === undefined) {
             setTotalCSum(0)
         }
-        if (totalFSum === undefined || Number.isNaN(totalFSum)) {
+        if (totalFSum === undefined) {
             setTotalFSum(0)
         }
+
+        console.log("totalPSum: ", totalPSum)
+        console.log("totalCSum: ", totalCSum)
+        console.log("totalFSum: ", totalFSum)
+        console.log("consumed change")
         
     }, [props.breakfastCals, props.lunchCals, props.dinnerCals, props.otherCals])
 
@@ -46,7 +55,7 @@ export default function Consumed(props) {
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Protein</p>
                     <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{Number.isNaN(Math.round(totalPSum / (totalPSum+totalCSum+totalFSum) * 100)) ? 0 : Math.round(totalPSum / (totalPSum+totalCSum+totalFSum) * 100)}%</p>
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
-                        {Math.round(totalPSum)} g
+                        {totalPSum} g
                     </p>
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                         <circle
@@ -76,7 +85,7 @@ export default function Consumed(props) {
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Carbs</p>
                     <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{Number.isNaN(Math.round(totalCSum / (totalPSum+totalCSum+totalFSum) * 100)) ? 0 : Math.round(totalCSum / (totalPSum+totalCSum+totalFSum) * 100)}%</p>
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
-                        {Math.round(totalCSum)} g
+                        {totalCSum} g
                     </p>
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                         <circle
@@ -106,7 +115,7 @@ export default function Consumed(props) {
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] -translate-y-12 text-slate-600 font-semibold">Fats</p>
                     <p className="translate-x-[0.1rem] text-[0.8rem] text-slate-600 font-semibold text-center">{Number.isNaN(Math.round(totalFSum / (totalPSum+totalCSum+totalFSum) * 100)) ? 0 : Math.round(totalFSum / (totalPSum+totalCSum+totalFSum) * 100)}%</p>
                     <p className="text-[0.8rem] absolute translate-x-[0.1rem] translate-y-12 text-slate-600 font-semibold">
-                        {Math.round(totalFSum)} g
+                        {totalFSum} g
                     </p>
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" className="z-10 absolute rotate-[270deg] w-[68px] h-[68px]">
                         <circle
