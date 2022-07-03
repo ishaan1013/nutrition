@@ -144,7 +144,7 @@ export default function Sidebar(props) {
             <div className="z-50 md:hidden fixed">
                 <div 
                 onClick={() => setIsOpened(true)}
-                className="cursor-pointer p-2 bg-blue-300 flex absolute top-4 left-4 w-14 h-14 xl:w-9 xl:h-9 rounded-2xl shadow-lg shadow-blue-200"
+                className="select-none pointer-events-none cursor-pointer p-2 bg-sky-500 flex absolute top-4 left-4 w-12 h-12 xl:w-9 xl:h-9 rounded-2xl shadow-lg shadow-sky-400"
                 >
                     <Image alt="Logo" src={Logo}/>
                 </div>
