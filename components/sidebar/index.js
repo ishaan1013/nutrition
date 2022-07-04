@@ -141,10 +141,10 @@ export default function Sidebar(props) {
     return (
         <>
             {!isOpened && 
-            <div className="z-50 md:hidden fixed">
+            <div className="z-[48] md:hidden fixed">
                 <div 
                 onClick={() => setIsOpened(true)}
-                className="select-none pointer-events-none cursor-pointer p-2 bg-sky-500 flex absolute top-4 left-4 w-12 h-12 xl:w-9 xl:h-9 rounded-2xl shadow-lg shadow-sky-400"
+                className="select-none cursor-pointer p-2 bg-sky-500 flex absolute top-4 left-4 w-12 h-12 xl:w-9 xl:h-9 rounded-2xl shadow-lg shadow-sky-400"
                 >
                     <Image alt="Logo" src={Logo}/>
                 </div>
@@ -153,12 +153,12 @@ export default function Sidebar(props) {
             
             {isOpened && 
             <>
-                <nav className="flex z-[51] select-none h-screen w-30 md:hidden flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
+                <nav className="flex z-[49] select-none h-screen w-30 md:hidden flex-col justify-between items-center py-10 px-5 bg-blue-500/[0.85]">
                     <SidebarContent />
                 </nav>
                 <div 
                 onClick={() => {setIsOpened(false)}} 
-                className="md:hidden absolute w-full h-screen z-50" 
+                className="md:hidden absolute w-full h-screen z-[48]" 
                 />
             </>
             }

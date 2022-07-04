@@ -465,8 +465,8 @@ export default function Search(props) {
     }
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center">
-            <div className="relative w-1/3 py-12 bg-white rounded-[2rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
+        <div className="w-screen h-screen md:px-0 sm:px-16 px-2 flex items-center justify-center">
+            <div className="relative 2xl:w-1/3 xl:w-2/5 lg:w-1/2 md:w-3/5 w-full search-zoom py-12 md:z-0 z-50 bg-white rounded-[2rem] shadow-2xl shadow-indigo-300/50 flex flex-col items-center justify-center">
                 <RenderContent />
             </div>
         </div>

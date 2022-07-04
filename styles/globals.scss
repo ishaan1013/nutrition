@@ -23,6 +23,12 @@ body {
   }
 }
 
+.search-zoom {
+  @media screen and (max-width: 640px) {
+    zoom: 85%
+  }
+}
+
 html {
   background-color: #f5f6f7;
 }
