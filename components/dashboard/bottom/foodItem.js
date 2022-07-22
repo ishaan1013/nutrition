@@ -13,7 +13,6 @@ export default function FoodItem(props) {
         const mealRef = ref(db, (props.userId + "/" + props.date + "/" + props.meal))
         onValue(mealRef, (snapshot) => {
             const data = snapshot.val()
-            console.log(data)  
             setFoods(data)
         })
     }, [props.date])
@@ -51,7 +50,7 @@ export default function FoodItem(props) {
     // }
 
     function RenderFoodItems() {
-        if (foods !== null && foods !== undefined) {
+        if (foods) {
             const foodList = []
             const cals = []
             const p = []
@@ -102,6 +101,12 @@ export default function FoodItem(props) {
             )
 
             return (<>{results}</>)
+        }
+        else {
+            props.setTotalCal(0)
+            props.setTotalProtein(0)
+            props.setTotalCarbs(0)
+            props.setTotalFats(0)
         }
         return null
     }
