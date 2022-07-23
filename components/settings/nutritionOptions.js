@@ -1,24 +1,71 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function NutritionOptions() {
 
-    const [caloriesInput, setCaloriesInput] = useState("2000")
+    const [caloriesInput, setCaloriesInput] = useState(2000)
     const onChangeCalories = (event) => {
         setCaloriesInput(event.target.value)
     }  
-    const [proteinInput, setProteinInput] = useState("210")
+    const [proteinInput, setProteinInput] = useState(210)
     const onChangeProtein = (event) => {
         setProteinInput(event.target.value)
     }  
-    const [carbsInput, setCarbsInput] = useState("140")
+    const [carbsInput, setCarbsInput] = useState(140)
     const onChangeCarbs = (event) => {
         setCarbsInput(event.target.value)
     }  
-    const [fatsInput, setFatsInput] = useState("70")
+    const [fatsInput, setFatsInput] = useState(70)
     const onChangeFats = (event) => {
         setFatsInput(event.target.value)
     }  
     //todo write goals to database when account is created, intialize state with those values
+
+    const [caloriesWarning, setCaloriesWarning] = useState("")
+    const [proteinWarning, setProteinWarning] = useState("")
+    const [carbsWarning, setCarbsWarning] = useState("")
+    const [fatsWarning, setFatsWarning] = useState("")
+
+    useEffect(() => {
+        if (caloriesInput < 1000) {
+            setCaloriesWarning("Less than 1000 is not recommended.")
+        }
+        else {
+            setCaloriesWarning("")
+        }
+    }, [caloriesInput])
+    useEffect(() => {
+        if (proteinInput < 0) {
+            setProteinWarning("Enter a positive value.")
+        }
+        else if (!proteinInput) {
+            setProteinWarning("Enter a value.")
+        }
+        else {
+            setProteinWarning("")
+        }
+    }, [proteinInput])
+    useEffect(() => {
+        if (carbsInput < 0) {
+            setCarbsWarning("Enter a positive value.")
+        }
+        else if (!carbsInput) {
+            setCarbsWarning("Enter a value.")
+        }
+        else {
+            setCarbsWarning("")
+        }
+    }, [carbsInput])
+    useEffect(() => {
+        if (fatsInput < 0) {
+            setFatsWarning("Enter a positive value.")
+        }
+        else if (!fatsInput) {
+            setFatsWarning("Enter a value.")
+        }
+        else {
+            setFatsWarning("")
+        }
+    }, [fatsInput])
 
     return (
         <div className="w-full flex flex-col justify-center border-b-[1px] border-slate-300 py-4">
@@ -26,7 +73,7 @@ export default function NutritionOptions() {
             <div className="flex w-full justify-between items-center my-1">
                 <h4 className="font-semibold text-slate-600">Daily Calories</h4>
                 <div className="flex items-center">
-                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Less than 1000 is not recommended.</p>
+                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">{caloriesWarning}</p>
                     <input
                     value={caloriesInput}
                     onChange={onChangeCalories}
@@ -40,7 +87,7 @@ export default function NutritionOptions() {
             <div className="flex w-full justify-between items-center my-1">
                 <h4 className="font-semibold text-slate-600">Protein</h4>
                 <div className="flex items-center">
-                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
+                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">{proteinWarning}</p>
                     <input
                     value={proteinInput}
                     onChange={onChangeProtein}
@@ -54,7 +101,7 @@ export default function NutritionOptions() {
             <div className="flex w-full justify-between items-center my-1">
                 <h4 className="font-semibold text-slate-600">Carbohydrates</h4>
                 <div className="flex items-center">
-                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
+                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">{carbsWarning}</p>
                     <input
                     value={carbsInput}
                     onChange={onChangeCarbs}
@@ -68,7 +115,7 @@ export default function NutritionOptions() {
             <div className="flex w-full justify-between items-center my-1">
                 <h4 className="font-semibold text-slate-600">Fats</h4>
                 <div className="flex items-center">
-                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
+                    <p className="w-full text-center mr-4 text-sm font-medium text-red-500">{fatsWarning}</p>
                     <input
                     value={fatsInput}
                     onChange={onChangeFats}
