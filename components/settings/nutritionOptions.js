@@ -1,4 +1,25 @@
+import { useState } from "react"
+
 export default function NutritionOptions() {
+
+    const [caloriesInput, setCaloriesInput] = useState("2000")
+    const onChangeCalories = (event) => {
+        setCaloriesInput(event.target.value)
+    }  
+    const [proteinInput, setProteinInput] = useState("210")
+    const onChangeProtein = (event) => {
+        setProteinInput(event.target.value)
+    }  
+    const [carbsInput, setCarbsInput] = useState("140")
+    const onChangeCarbs = (event) => {
+        setCarbsInput(event.target.value)
+    }  
+    const [fatsInput, setFatsInput] = useState("70")
+    const onChangeFats = (event) => {
+        setFatsInput(event.target.value)
+    }  
+    //todo write goals to database when account is created, intialize state with those values
+
     return (
         <div className="w-full flex flex-col justify-center border-b-[1px] border-slate-300 py-4">
             <h4 className="font-extrabold text-slate-600 mb-4">Nutrition Goals</h4>
@@ -7,6 +28,8 @@ export default function NutritionOptions() {
                 <div className="flex items-center">
                     <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Less than 1000 is not recommended.</p>
                     <input
+                    value={caloriesInput}
+                    onChange={onChangeCalories}
                     id="caloriesInput"
                     type="number"
                     placeholder="Calories (g)"
@@ -19,6 +42,8 @@ export default function NutritionOptions() {
                 <div className="flex items-center">
                     <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
                     <input
+                    value={proteinInput}
+                    onChange={onChangeProtein}
                     id="proteinInput"
                     type="number"
                     placeholder="Protein (g)"
@@ -31,6 +56,8 @@ export default function NutritionOptions() {
                 <div className="flex items-center">
                     <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
                     <input
+                    value={carbsInput}
+                    onChange={onChangeCarbs}
                     id="carbsInput"
                     type="number"
                     placeholder="Carbohydrates (g)"
@@ -43,6 +70,8 @@ export default function NutritionOptions() {
                 <div className="flex items-center">
                     <p className="w-full text-center mr-4 text-sm font-medium text-red-500">Enter a positive value.</p>
                     <input
+                    value={fatsInput}
+                    onChange={onChangeFats}
                     id="fatsInput"
                     type="number"
                     placeholder="Fats (g)"
