@@ -457,7 +457,7 @@ export default function Search(props) {
                         )
                         props.setIsSearching(false)
                     }}
-                    className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500 text-white p-2 mt-6 ease-in-out duration-100 font-medium"
+                    className="w-full text-center rounded-lg bg-blue-500/90 hover:bg-blue-500 text-white p-2 mt-6 ease-in-out duration-100 font-medium"
                     >Add Food</button>
                 </div>
             )

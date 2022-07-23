@@ -93,7 +93,7 @@ export default function SignUp() {
                     />
                 </div>
                 <button
-                className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 font-medium"
+                className="w-full text-center rounded-lg bg-blue-500/90 hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 font-medium"
                 onClick={() => signUpHandler(email, pass, setError)}
                 >Sign Up</button>
             </div>

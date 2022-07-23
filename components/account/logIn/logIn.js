@@ -62,7 +62,7 @@ export default function Login() {
             <Guest />
             {/* <div
             onClick={() => anon()}
-            className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 cursor-pointer font-medium"
+            className="w-full text-center rounded-lg bg-blue-500/90 hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 cursor-pointer font-medium"
             >
                 Guest Log In
             </div>
@@ -103,7 +103,7 @@ export default function Login() {
                     />
                 </div>
                 <button
-                className="w-full text-center rounded-lg bg-blue-500/[0.85] hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 font-medium"
+                className="w-full text-center rounded-lg bg-blue-500/90 hover:bg-blue-500  text-white p-2 mt-5 mb-2 ease-in-out duration-100 font-medium"
                 onClick={() => logInHandler(email, pass, setError)}
                 >Log In</button>
             </div>
