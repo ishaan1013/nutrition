@@ -9,23 +9,31 @@ import { getDatabase, ref, child, get, set } from "firebase/database"
 export default function NutritionOptions(props) {
 
     const dbRef = ref(getDatabase())
+    const auth = getAuth()
 
     useEffect(() => {
+        console.log("NutritionOptions useEffect")
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                get(child(dbRef, (user.uid + "/prefs"))).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const prefsData = snapshot.val()
+                        setCaloriesInput(prefsData.goals.calories)
+                        setProteinInput(prefsData.goals.protein)
+                        setCarbsInput(prefsData.goals.carbs)
+                        setFatsInput(prefsData.goals.fats)
+                        console.log("prefs found")
+                    } else {
+                        console.log("No prefs")
+                    }
+                }).catch((error) => {
+                    console.error(error)
+                })
+            }
+          })
+          
         if (props.user) {
-            get(child(dbRef, (props.user.uid + "/prefs"))).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const prefsData = snapshot.val()
-                    setCaloriesInput(prefsData.goals.calories)
-                    setProteinInput(prefsData.goals.protein)
-                    setCarbsInput(prefsData.goals.carbs)
-                    setFatsInput(prefsData.goals.fats)
-                } else {
-                    console.log("No prefs")
-                }
-                console.log("test",props.user.uid)
-            }).catch((error) => {
-                console.error(error)
-            })
+            
         }
     }, [])
 
@@ -38,19 +46,19 @@ export default function NutritionOptions(props) {
         }
     }
 
-    const [caloriesInput, setCaloriesInput] = useState(2500)
+    const [caloriesInput, setCaloriesInput] = useState(0)
     const onChangeCalories = (event) => {
         setCaloriesInput(roundInput(event.target.value))
     }  
-    const [proteinInput, setProteinInput] = useState(160)
+    const [proteinInput, setProteinInput] = useState(0)
     const onChangeProtein = (event) => {
         setProteinInput(roundInput(event.target.value))
     }  
-    const [carbsInput, setCarbsInput] = useState(230)
+    const [carbsInput, setCarbsInput] = useState(0)
     const onChangeCarbs = (event) => {
         setCarbsInput(roundInput(event.target.value))
     }  
-    const [fatsInput, setFatsInput] = useState(90)
+    const [fatsInput, setFatsInput] = useState(0)
     const onChangeFats = (event) => {
         setFatsInput(roundInput(event.target.value))
     }  

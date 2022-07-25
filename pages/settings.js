@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 // import { useAppContext } from "../global/state"
@@ -15,36 +15,17 @@ export default function Settings() {
     const [isAnon, setIsAnon] = useState(false)
     const router = useRouter()
     const auth = getAuth()
-    const user = auth.currentUser
-
-    // function SwitchOption(props) {
-    //     if ((props.isKg && props.kg) || (!props.isKg && !props.kg)) {   
-    //         return (
-    //             <div 
-    //             className="cursor-pointer rounded-full py-2 px-4 bg-blue-500/90 font-semibold text-sm text-white"
-    //             >
-    //                 {props.optionText}
-    //             </div>
-    //         )
-    //     }
-    //     else {
-    //         return (
-    //             <div 
-    //             className="cursor-pointer rounded-full py-2 px-4 bg-transparent font-medium text-sm text-slate-600"
-    //             onClick={() => {props.setIsKg(!props.isKg)}}
-    //             >
-    //                 {props.optionText}
-    //             </div>
-    //         )
-    //     }
-    // }
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
-        if (!user) {
-            router.push("/")
-        } else {
-            setIsAnon(user.isAnonymous)
-        }
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                router.push("/")
+            } else {
+                setIsAnon(user.isAnonymous)
+                setUser(user)
+            }
+        })
     }, [])
 
 
