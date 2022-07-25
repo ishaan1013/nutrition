@@ -36,9 +36,9 @@ export default function Settings() {
                 <h1 className="text-3xl text-blue-500/[0.85] mb-12">Settings</h1>
                 { isAnon &&
                 <div className="flex pt-2 pb-8">
-                    <div className="p-4 2xl:w-1/4 xl:w-1/3 lg:w-2/5 md:w-3/5 rounded-xl border-[1px] border-red-500 bg-red-50">
-                        <MdWarning className="text-red-500 mb-2 w-6 h-6" />
-                        <p className="leading-[1.75rem] font-medium text-red-500">
+                    <div className="p-3 2xl:w-1/5 xl:w-1/3 lg:w-2/5 md:w-3/5 rounded-xl border-[1px] border-red-500 bg-red-50">
+                        <MdWarning className="text-red-500 mb-2 w-5 h-5" />
+                        <p className="leading-[1.5em] font-medium text-sm text-red-500">
                             You&apos;re using a temporary account. Your data will not be saved once logged out.
                         </p>
                     </div>
