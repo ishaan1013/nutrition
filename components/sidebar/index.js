@@ -34,7 +34,9 @@ export default function Sidebar(props) {
                 href="/"
                 passHref
                 >
-                    <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    <a>
+                        <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    </a>
                 </Link>
             )   
         } else {
@@ -42,7 +44,9 @@ export default function Sidebar(props) {
                 <div
                 onClick={() => {props.setIsSearching(!props.isSearching)}}
                 >
-                    <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    <a>
+                        <MdSearch className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                    </a>
                 </div>
             )
         }
@@ -55,9 +59,11 @@ export default function Sidebar(props) {
                 href="/" 
                 passHref
                 >
-                    <MdOutlineDashboard 
+                    <a>
+                        <MdOutlineDashboard 
                     className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
                     />
+                    </a>
                 </Link>
             )   
         } else {
@@ -66,10 +72,12 @@ export default function Sidebar(props) {
                 href="/" 
                 passHref
                 >
-                    <MdOutlineDashboard 
+                    <a>
+                        <MdOutlineDashboard 
                     onClick={() => {props.setIsSearching(false)}}
                     className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"
                     />
+                    </a>
                 </Link>
             )
         }
@@ -109,7 +117,9 @@ export default function Sidebar(props) {
                     <div className="relative flex items-center">
                         <li id="customHover4">
                             <Link href="/settings" passHref>
-                                <MdOutlineSettings className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                                <a>
+                                    <MdOutlineSettings className="w-11 h-11 xl:w-12 xl:h-12 text-white p-[0.65rem] m-2 hover:bg-white/[0.15] rounded-full cursor-pointer"/>
+                                </a>
                             </Link>
                         </li>
                         <p className="left-[3.75rem] absolute bg-black/[0.02] text-black/80 rounded-lg px-3 py-1 text-sm font-semibold border-2 border-black/[0.15] backdrop-blur-md" id="customHoverSibling4">
