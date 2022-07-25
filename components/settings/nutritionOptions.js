@@ -12,7 +12,6 @@ export default function NutritionOptions(props) {
     const auth = getAuth()
 
     useEffect(() => {
-        console.log("NutritionOptions useEffect")
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 get(child(dbRef, (user.uid + "/prefs"))).then((snapshot) => {
@@ -62,7 +61,8 @@ export default function NutritionOptions(props) {
     const onChangeFats = (event) => {
         setFatsInput(roundInput(event.target.value))
     }  
-    //todo write goals to database when account is created, intialize state with those values
+    
+    const [isSaved, setIsSaved] = useState(false)
 
     const [caloriesWarning, setCaloriesWarning] = useState("")
     const [proteinWarning, setProteinWarning] = useState("")
@@ -86,6 +86,7 @@ export default function NutritionOptions(props) {
             setCaloriesWarning("")
         }
     }, [caloriesInput])
+
     useEffect(() => {
         macrosWarning(proteinInput, setProteinWarning)
     }, [proteinInput])
@@ -97,40 +98,62 @@ export default function NutritionOptions(props) {
     }, [fatsInput])
 
     function submitGoals(event) {
-        if (caloriesWarning || proteinWarning || carbsWarning || fatsWarning) {
-            console.log("no")
+        if (!(caloriesWarning || proteinWarning || carbsWarning || fatsWarning)) {
+            event.preventDefault()
+            setIsSaved(true)
+
+            const db = getDatabase()
+            set(ref(db, (props.user.uid + "/prefs/goals")), {
+                calories: caloriesInput,
+                carbs: carbsInput,
+                fats: fatsInput,
+                protein: proteinInput
+            })
         }
-        event.preventDefault()
+    }
 
-        const db = getDatabase()
-        set(ref(db, (props.user.uid + "/prefs/goals")), {
-            calories: caloriesInput,
-            carbs: carbsInput,
-            fats: fatsInput,
-            protein: proteinInput
-        })
+    useEffect(() => {
+        if (isSaved) {
+            setTimeout(() => {
+                setIsSaved(false)
+            }, 2000)
+        }
+    }, [isSaved])
 
-        //todo add confirmation popup
+    function Confirmation() {
+        return (
+            <>
+                {isSaved ? 
+                <p className="font-bold text-blue-500/90 text-sm mt-1 w-full text-center">Goals Saved!</p> 
+                : null}
+            </>
+        )
     }
 
     function RenderButton() {
         if (caloriesWarning || proteinWarning || carbsWarning || fatsWarning) {
             return (
-                <button 
-                className="cursor-not-allowed py-2 w-44 bg-blue-500/50 rounded-lg font-semibold text-sm text-white flex items-center justify-center"
-                >
-                    Save
-                </button>
+                <div className="flex flex-col justify-center">
+                    <button
+                    className="cursor-not-allowed py-2 w-44 bg-blue-500/50 rounded-lg font-semibold text-sm text-white flex items-center justify-center"
+                    >
+                        Save
+                    </button>
+                    <Confirmation />
+                </div>
             )
         }
         else {
             return (
-                <button 
-                onClick={(e) => submitGoals(e)}
-                className="py-2 w-44 bg-blue-500/90 hover:bg-blue-500 rounded-lg font-semibold text-sm text-white flex items-center justify-center"
-                >
-                    Save
-                </button>
+                <div className="flex flex-col justify-center">
+                    <button
+                    onClick={(e) => submitGoals(e)}
+                    className="py-2 w-44 bg-blue-500/90 hover:bg-blue-500 rounded-lg font-semibold text-sm text-white flex items-center justify-center"
+                    >
+                        Save
+                    </button>
+                    <Confirmation />
+                </div>
             )
         }
     }
