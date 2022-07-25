@@ -67,6 +67,17 @@ export default function NutritionOptions() {
         }
     }, [fatsInput])
 
+    function submitGoals(event) {
+        if (caloriesWarning || proteinWarning || carbsWarning || fatsWarning) {
+            console.log("no")
+        }
+        event.preventDefault()
+        console.log(caloriesInput)
+        console.log(proteinInput)
+        console.log(carbsInput)
+        console.log(fatsInput)
+    }
+
     return (
         <div className="w-full flex flex-col justify-center border-b-[1px] border-slate-300 py-4">
             <h4 className="font-extrabold text-slate-600 mb-4">Nutrition Goals</h4>
@@ -126,8 +137,9 @@ export default function NutritionOptions() {
                     />
                 </div>
             </div>
-            <div className="flex w-full justify-end items-center my-1">
+            <div className="flex w-full justify-end items-center my-2">
                 <button 
+                onClick={(e) => submitGoals(e)}
                 className="py-2 w-44 bg-blue-500/90 hover:bg-blue-500 rounded-lg font-semibold text-sm text-white flex items-center justify-center"
                 >
                     Save
