@@ -1,12 +1,12 @@
 import { getAuth } from "firebase/auth"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import { useAppContext } from "../global/state"
+// import { useAppContext } from "../global/state"
 
 import { MdWarning } from "react-icons/md"
 import SwitchOption from "../components/settings/switchOption"
 import Sidebar from "../components/sidebar"
-import { set } from "firebase/database"
+// import { set } from "firebase/database"
 import NutritionOptions from "../components/settings/nutritionOptions"
 
 export default function Settings() {

@@ -1,6 +1,27 @@
 import { useEffect, useState } from "react"
 
+import { getAuth } from "firebase/auth"
+
+import { app } from "../../global/db/firebase"
+import firebase from "firebase/app"
+import { getDatabase, ref, child, get } from "firebase/database"
+
 export default function NutritionOptions() {
+
+    const auth = getAuth()
+    const user = auth.currentUser
+
+    const dbRef = ref(getDatabase())
+    get(child(dbRef, (user.uid + "/prefs"))).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val())
+        } else {
+            console.log("No data available")
+        }
+        console.log(user.uid)
+    }).catch((error) => {
+        console.error(error)
+    });
 
     const roundInput = (value) => {
         if (isNaN(value)) {
