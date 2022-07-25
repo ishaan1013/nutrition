@@ -51,7 +51,7 @@ export default function Settings() {
     return (
         <div className="flex">
             <Sidebar />
-            <main className="w-full px-20 py-10 select-none">
+            <main className="w-full px-20 py-10 md:ml-20 select-none">
                 <h1 className="text-3xl text-blue-500/[0.85] mb-12">Settings</h1>
                 { isAnon &&
                 <div className="flex pt-2 pb-8">

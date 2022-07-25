@@ -153,7 +153,7 @@ export default function Sidebar(props) {
             
             {isOpened && 
             <>
-                <nav className="flex z-[49] select-none h-screen w-30 md:hidden flex-col justify-between items-center py-10 px-5 bg-blue-500/90">
+                <nav className="fixed flex z-[49] select-none h-screen w-30 md:hidden flex-col justify-between items-center py-10 px-5 bg-blue-500/90">
                     <SidebarContent />
                 </nav>
                 <div 
@@ -163,7 +163,7 @@ export default function Sidebar(props) {
             </>
             }
 
-            <nav className="hidden z-50 select-none h-screen w-[4.8rem] xl:w-24 md:flex flex-col justify-between items-center py-10 px-5 bg-blue-500/90">
+            <nav className="fixed hidden z-50 select-none h-screen w-[4.8rem] xl:w-24 md:flex flex-col justify-between items-center py-10 px-5 bg-blue-500/90">
                 <SidebarContent />
             </nav>
         </>
