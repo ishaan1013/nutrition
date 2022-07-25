@@ -70,7 +70,7 @@ export default function Settings() {
                         <SwitchOption isKg={isKg} setIsKg={setIsKg} optionText="Pounds (Lbs)" kg={false}/>
                     </div>
                 </div>
-                <NutritionOptions />
+                <NutritionOptions user={user} />
             </main>
         </div>
     )

@@ -4,17 +4,15 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 import { app } from "../../global/db/firebase"
 import firebase from "firebase/app"
-import { getDatabase, ref, child, get } from "firebase/database"
+import { getDatabase, ref, child, get, set } from "firebase/database"
 
-export default function NutritionOptions() {
+export default function NutritionOptions(props) {
 
-    const auth = getAuth()
-    // const user = auth.currentUser
     const dbRef = ref(getDatabase())
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            get(child(dbRef, (user.uid + "/prefs"))).then((snapshot) => {
+    useEffect(() => {
+        if (props.user) {
+            get(child(dbRef, (props.user.uid + "/prefs"))).then((snapshot) => {
                 if (snapshot.exists()) {
                     const prefsData = snapshot.val()
                     setCaloriesInput(prefsData.goals.calories)
@@ -24,12 +22,12 @@ export default function NutritionOptions() {
                 } else {
                     console.log("No prefs")
                 }
-                console.log(user.uid)
+                console.log("test",props.user.uid)
             }).catch((error) => {
                 console.error(error)
             })
         }
-    })
+    }, [])
 
     const roundInput = (value) => {
         if (isNaN(value)) {
@@ -95,10 +93,16 @@ export default function NutritionOptions() {
             console.log("no")
         }
         event.preventDefault()
-        console.log(caloriesInput)
-        console.log(proteinInput)
-        console.log(carbsInput)
-        console.log(fatsInput)
+
+        const db = getDatabase()
+        set(ref(db, (props.user.uid + "/prefs/goals")), {
+            calories: caloriesInput,
+            carbs: carbsInput,
+            fats: fatsInput,
+            protein: proteinInput
+        })
+
+        //todo add confirmation popup
     }
 
     function RenderButton() {
