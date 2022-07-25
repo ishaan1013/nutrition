@@ -5,8 +5,13 @@ export default function createUserDb(userId) {
     const db = getDatabase();
     set(ref(db, userId), {
         prefs: {
-            kg: true
+            kg: true,
+            goals: {
+                calories: 2500,
+                protein: 160,
+                carbs: 230,
+                fats: 90
+            }
         }
-
     })
 }
