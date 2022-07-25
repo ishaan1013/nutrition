@@ -1,11 +1,14 @@
 import { getAuth, signInAnonymously  } from "firebase/auth"
+import createUserDb from "../../global/db/createUserDb"
 
 export default function Guest() {
     const auth = getAuth()
     function anon() {
         signInAnonymously(auth)
-            .then(() => {
+            .then((userCredential) => {
                 console.log("signed in anonymously")
+                const user = userCredential.user
+                createUserDb(user.uid)
             })
             .catch((error) => {
                 const errorCode = error.code
