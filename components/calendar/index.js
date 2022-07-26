@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useAppContext } from "../../global/state"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
-import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminateCheckBox } from "react-icons/md"
-import Checkbox from "./Checkbox"
+// import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminateCheckBox } from "react-icons/md"
+import Checkbox from "./checkbox"
 
 export default function Calendar(props) {
     const appContext = useAppContext()
@@ -129,11 +129,11 @@ export default function Calendar(props) {
         return days
     }
 
-    const before = (
-        parseInt(appContext.sharedState.year) < current.getFullYear() || 
-        appContext.sharedState.year == current.getFullYear() && parseInt(appContext.sharedState.month) < current.getMonth() + 1 ||
-        appContext.sharedState.year == current.getFullYear() && appContext.sharedState.month == current.getMonth() + 1 && appContext.sharedState.day < current.getDate()
-    )
+    // const before = (
+    //     parseInt(appContext.sharedState.year) < current.getFullYear() || 
+    //     appContext.sharedState.year == current.getFullYear() && parseInt(appContext.sharedState.month) < current.getMonth() + 1 ||
+    //     appContext.sharedState.year == current.getFullYear() && appContext.sharedState.month == current.getMonth() + 1 && appContext.sharedState.day < current.getDate()
+    // )
 
     return (
         <>
@@ -186,17 +186,17 @@ export default function Calendar(props) {
                             />
                         </div>
                         <ul>
-                            <li className="flex items-center text-white font-medium ">
-                                <Checkbox before={before} goal="calories"/>
+                            <li key="calories" className="flex items-center text-white font-medium ">
+                                <Checkbox day={day} current={current} goal="calories"/>
                                 {/* {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year} */}
                                 Calories Goal
                             </li>
-                            <li className="flex items-center text-white font-medium ">
-                                <Checkbox before={before} goal="macros"/>
+                            <li key="macros" className="flex items-center text-white font-medium ">
+                                <Checkbox day={day} current={current} goal="macros"/>
                                 Macros Goal
                             </li>
-                            <li className="flex items-center text-white font-medium ">
-                                <Checkbox before={before} goal="weight"/>
+                            <li key="weight" className="flex items-center text-white font-medium ">
+                                <Checkbox day={day} current={current} goal="weight"/>
                                 Weight Goal
                             </li>
                         </ul>

@@ -6,7 +6,7 @@ import { app } from "../../global/db/firebase"
 import firebase from "firebase/app"
 import { getDatabase, ref, child, get, set } from "firebase/database"
 
-export default function NutritionOptions(props) {
+export default function GoalOptions(props) {
 
     const dbRef = ref(getDatabase())
     const auth = getAuth()

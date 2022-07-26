@@ -5,7 +5,6 @@ import { getDatabase, ref, set } from "firebase/database"
 export default function addTotalsDb(userId, date, calories, protein, carbs, fat) {
 
     const db = getDatabase()
-    console.log("addTotalsDb")
 
     set(ref(db, (userId + "/" + date+"/totals")), {
         totalCals: calories,

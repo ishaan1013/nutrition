@@ -35,9 +35,6 @@ export default function Consumed(props) {
     }, [props.breakfastCals, props.lunchCals, props.dinnerCals, props.otherCals])
 
     useEffect(() => {
-        console.log("Consumed" + appContext.sharedState.globalUid + date)
-        console.log("Consumed" + totalCalSum + totalPSum + totalCSum + totalFSum)
-        
         const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
 
         addTotalsDb(

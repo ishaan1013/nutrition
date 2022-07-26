@@ -7,7 +7,7 @@ import { MdWarning } from "react-icons/md"
 import SwitchOption from "../components/settings/switchOption"
 import Sidebar from "../components/sidebar"
 // import { set } from "firebase/database"
-import NutritionOptions from "../components/settings/nutritionOptions"
+import GoalOptions from "../components/settings/goalOptions"
 
 export default function Settings() {
 
@@ -51,7 +51,7 @@ export default function Settings() {
                         <SwitchOption isKg={isKg} setIsKg={setIsKg} optionText="Pounds (Lbs)" kg={false}/>
                     </div>
                 </div>
-                <NutritionOptions user={user} />
+                <GoalOptions user={user} />
             </main>
         </div>
     )
