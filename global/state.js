@@ -9,7 +9,6 @@ export function AppWrapper({ children }) {
         month: `${current.getMonth() + 1}`,
         year: `${current.getFullYear()}`,
         globalUid: "",
-        globalAnon: true,
         updateFoods: true,
     }
 
@@ -19,10 +18,6 @@ export function AppWrapper({ children }) {
 
     const setGlobalUid = (status) => {
         sharedState.globalUid = status
-    }
-
-    const setGlobalAnon = (status) => {
-        sharedState.globalAnon = status
     }
 
     const changeDayContext = (day) => {
@@ -44,7 +39,6 @@ export function AppWrapper({ children }) {
             changeMonthContext, 
             changeYearContext, 
             setGlobalUid,
-            setGlobalAnon,
             setUpdateFoods,
         }}>
             {children}
