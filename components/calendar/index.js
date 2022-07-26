@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useAppContext } from "../../global/state"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdOutlineIndeterminateCheckBox } from "react-icons/md"
+import Checkbox from "./Checkbox"
 
 export default function Calendar(props) {
     const appContext = useAppContext()
@@ -133,14 +134,6 @@ export default function Calendar(props) {
         appContext.sharedState.year == current.getFullYear() && parseInt(appContext.sharedState.month) < current.getMonth() + 1 ||
         appContext.sharedState.year == current.getFullYear() && appContext.sharedState.month == current.getMonth() + 1 && appContext.sharedState.day < current.getDate()
     )
-    function Checkbox() { 
-        if (before) {
-            return <MdOutlineIndeterminateCheckBox className="mr-2" />
-        }
-        else {
-            return <MdOutlineCheckBoxOutlineBlank className="mr-2" />
-        }
-    }
 
     return (
         <>
@@ -194,16 +187,16 @@ export default function Calendar(props) {
                         </div>
                         <ul>
                             <li className="flex items-center text-white font-medium ">
-                                <Checkbox/>
+                                <Checkbox before={before} goal="calories"/>
                                 {/* {appContext.sharedState.day} {appContext.sharedState.month} {appContext.sharedState.year} */}
                                 Calories Goal
                             </li>
                             <li className="flex items-center text-white font-medium ">
-                                <Checkbox/>
+                                <Checkbox before={before} goal="macros"/>
                                 Macros Goal
                             </li>
                             <li className="flex items-center text-white font-medium ">
-                                <Checkbox/>
+                                <Checkbox before={before} goal="weight"/>
                                 Weight Goal
                             </li>
                         </ul>
