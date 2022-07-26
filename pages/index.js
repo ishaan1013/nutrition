@@ -19,9 +19,6 @@ export default function Home() {
       const uid = user.uid
       const isAnonymous = user.isAnonymous
       setUserIn(true)
-      console.log("user: ")
-      console.log(user)
-      console.log("user.uid: "+user.uid)
       appContext.setGlobalUid(uid)
     } else {
       setUserIn(false)

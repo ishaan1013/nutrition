@@ -93,7 +93,6 @@ export default function FoodItem(props) {
                         props.setTotalProtein(props.totalProtein - result.protein)
                         props.setTotalCarbs(props.totalCarbs - result.carbs)
                         props.setTotalFats(props.totalFats - result.fat)
-                        console.log("total protein breakfast: ", props.totalProtein)
                     }}
                     className="w-8 h-8 p-1 text-red-500/90 hover:text-red-500 cursor-pointer rounded-full hover:bg-red-200/90 border-[1px] border-slate-400 hover:border-red-500 hidden group-hover:block"
                     />

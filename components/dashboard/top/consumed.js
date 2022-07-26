@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react"
 import { useAppContext } from "../../../global/state"
 import { FaChevronRight } from "react-icons/fa"
+import addTotalsDb from "../../../global/db/addTotalsDb"
 
 export default function Consumed(props) {
     const [totalCalSum, setTotalCalSum] = useState(0)
     const [totalPSum, setTotalPSum] = useState(0)
     const [totalCSum, setTotalCSum] = useState(0)
     const [totalFSum, setTotalFSum] = useState(0)
-
+    
+    //todo add total consumed to db for goal tracking
+    const appContext = useAppContext()
+    
     useEffect(() => {
+
         setTotalCalSum(Math.round(parseFloat(props.breakfastCals + props.lunchCals + props.dinnerCals + props.otherCals)))
         setTotalPSum(Math.round(parseFloat(props.breakfastP + props.lunchP + props.dinnerP + props.otherP)))
         setTotalCSum(Math.round(parseFloat(props.breakfastC + props.lunchC + props.dinnerC + props.otherC)))
         setTotalFSum(Math.round(parseFloat(props.breakfastF + props.lunchF + props.dinnerF + props.otherF)))
         
-        // console.log("totalPSum: ", totalPSum)
-        // console.log("totalCSum: ", totalCSum)
-        // console.log("totalFSum: ", totalFSum)
-
         if (totalCalSum === undefined) {
             setTotalCalSum(0)
         }
@@ -30,13 +31,24 @@ export default function Consumed(props) {
         if (totalFSum === undefined) {
             setTotalFSum(0)
         }
-
-        console.log("totalPSum: ", totalPSum)
-        console.log("totalCSum: ", totalCSum)
-        console.log("totalFSum: ", totalFSum)
-        console.log("consumed change")
         
     }, [props.breakfastCals, props.lunchCals, props.dinnerCals, props.otherCals])
+
+    useEffect(() => {
+        console.log("Consumed" + appContext.sharedState.globalUid + date)
+        console.log("Consumed" + totalCalSum + totalPSum + totalCSum + totalFSum)
+        
+        const date = "" + appContext.sharedState.year + appContext.sharedState.month + appContext.sharedState.day
+
+        addTotalsDb(
+            appContext.sharedState.globalUid,
+            date,
+            totalCalSum,
+            totalPSum,
+            totalCSum,
+            totalFSum
+        )
+    }, [totalCalSum])
 
     return (
         <>
